@@ -19,3 +19,4 @@ venv/
 Thumbs.db
 
 # .json
+/backend/_misc/
