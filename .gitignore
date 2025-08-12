@@ -20,3 +20,4 @@ Thumbs.db
 
 # .json
 /backend/_misc/
+/backend/parsing/test/output_test.json
