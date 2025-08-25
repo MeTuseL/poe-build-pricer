@@ -51,13 +51,13 @@ def parse_gem_element(gem_elem: ET.Element) -> dict:
     }
 
 
-def extract_and_parse_items_from_code(pob_code: str):
+
+def parse_items_and_gems_from_xml(xml_str: str) -> dict:
     """
-    Takes a PoB code, decodes it, and returns a dict:
-    - "items": list of parsed objects
-    - "gems_by_slot": dict {slot: [gems]}
+    Parse PoB XML and return:
+    - items: list of parsed items
+    - gems_by_slot: dict {slot: [gems]}
     """
-    xml_str = decode_pob_code(pob_code)
     root = ET.fromstring(xml_str)
 
     result = {
@@ -65,14 +65,14 @@ def extract_and_parse_items_from_code(pob_code: str):
         "gems_by_slot": {}
     }
 
-    # --- Regular items ---
+    # Items
     items_node = root.find("Items")
     if items_node is not None:
         for item in items_node.findall("Item"):
             if item.text:
                 result["items"].append(parse_item_block(item.text))
 
-    # --- Gems grouped by slot ---
+    # Gems by slot
     skills_node = root.find("Skills")
     if skills_node is not None:
         for skill_elem in skills_node.findall(".//Skill"):
@@ -84,3 +84,11 @@ def extract_and_parse_items_from_code(pob_code: str):
                 result["gems_by_slot"].setdefault(slot, []).extend(gems_in_slot)
 
     return result
+
+
+def extract_and_parse_items_from_code(pob_code: str):
+    """
+    Take a PoB code, decode it, and parse items/gems.
+    """
+    xml_str = decode_pob_code(pob_code)
+    return parse_items_and_gems_from_xml(xml_str)
