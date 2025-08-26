@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from parsing.decoder.pob_decoder import decode_pob_code
+from parsing.decoder import account_decoder
 
 
 def parse_item_block(item_text: str) -> dict:
@@ -92,3 +93,11 @@ def extract_and_parse_items_from_code(pob_code: str):
     """
     xml_str = decode_pob_code(pob_code)
     return parse_items_and_gems_from_xml(xml_str)
+
+def extract_and_parse_items_from_account(account_name: str, character_name: str, poesessid: str):
+    """
+    Fetch PoE API data for a character and parse items + gems.
+    """
+    api_data = account_decoder.fetch_account_data(account_name, character_name, poesessid)
+    pob_xml = account_decoder.poe_api_json_to_pob_xml(api_data)
+    return parse_items_and_gems_from_xml(pob_xml)

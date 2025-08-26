@@ -23,4 +23,5 @@ Thumbs.db
 
 # .json
 /backend/_misc/
-/backend/parsing/test/output_test.json
+/backend/parsing/test/output_pob_test.json
+/backend/parsing/test/output_account_test.json
