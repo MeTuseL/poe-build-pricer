@@ -65,40 +65,16 @@ def contains_any_in_fields(gem: dict, keywords) -> bool:
     return any(k.lower() in hay for k in keywords)
 
 # -------------------
-# Slot Resolution Logic
+# Slot resolution logic with occupied_slots
 # -------------------
-def general_resolve_slot_logic(item: dict, links_keys: set):
-    """
-    Fallback function to map an item to a PoB slot using SUBTYPE_TO_SLOT.
-    Steps:
-    1) Exact subType match
-    2) Exact type match
-    3) subType via SUBTYPE_TO_SLOT
-    4) type via SUBTYPE_TO_SLOT
-    Returns None if no match found.
-    """
-    sub = item.get("subType")
-    typ = item.get("type")
-
-    if sub and sub in links_keys:
-        return sub
-    if typ and typ in links_keys:
-        return typ
-    if sub and sub in SUBTYPE_TO_SLOT:
-        candidate = SUBTYPE_TO_SLOT[sub]
-        if candidate in links_keys:
-            return candidate
-    if typ and typ in SUBTYPE_TO_SLOT:
-        candidate = SUBTYPE_TO_SLOT[typ]
-        if candidate in links_keys:
-            return candidate
-    return None
-
 def resolve_slot_name_for_item(item: dict, links_keys: set, occupied_slots: set):
     """
-    Main function to map an item to a PoB slot.
-    Handles weapons (1H/2H, Shield, Quiver) and falls back for armor/jewelry.
-    Uses `occupied_slots` to avoid assigning two items to the same slot.
+    Determine the correct PoB slot for a given item.
+    Handles:
+      - Weapon cases (1H/2H, dual-wield, off-hand only)
+      - Shield / Quiver
+      - Fallback via SUBTYPE_TO_SLOT for armor, jewelry, flasks, etc.
+    Marks the chosen slot as occupied.
     """
     sub = item.get("subType")
     typ = item.get("type")
@@ -117,7 +93,6 @@ def resolve_slot_name_for_item(item: dict, links_keys: set, occupied_slots: set)
                 return "Weapon 2"
         # 1H weapons
         if "1H" in sub or sub in ["Claw", "Dagger", "Wand", "Sceptre", "Rune Dagger"]:
-            # Prefer Weapon 1 if free
             if "Weapon 1" in links_keys and "Weapon 1" not in occupied_slots:
                 occupied_slots.add("Weapon 1")
                 return "Weapon 1"
@@ -125,32 +100,39 @@ def resolve_slot_name_for_item(item: dict, links_keys: set, occupied_slots: set)
                 occupied_slots.add("Weapon 2")
                 return "Weapon 2"
             # fallback if both occupied
-            return "Weapon 1"
+            if "Weapon 1" in links_keys:
+                return "Weapon 1"
+            if "Weapon 2" in links_keys:
+                return "Weapon 2"
 
-    # Fallback for armor/jewelry
-    slot_name = general_resolve_slot_logic(item, links_keys)
-    if slot_name and slot_name not in occupied_slots:
-        occupied_slots.add(slot_name)
-        return slot_name
+    # Fallback for non-weapon items
+    if sub and sub in links_keys and sub not in occupied_slots:
+        occupied_slots.add(sub)
+        return sub
+    if typ and typ in links_keys and typ not in occupied_slots:
+        occupied_slots.add(typ)
+        return typ
+    if sub and sub in SUBTYPE_TO_SLOT:
+        candidate = SUBTYPE_TO_SLOT[sub]
+        if candidate in links_keys and candidate not in occupied_slots:
+            occupied_slots.add(candidate)
+            return candidate
+    if typ and typ in SUBTYPE_TO_SLOT:
+        candidate = SUBTYPE_TO_SLOT[typ]
+        if candidate in links_keys and candidate not in occupied_slots:
+            occupied_slots.add(candidate)
+            return candidate
+
     return None
 
 # -------------------
-# Convert PoB XML to JSON
+# Convert PoB XML to JSON (refactored)
 # -------------------
-def pob_xml_to_json(pob_xml: str) -> dict:
-    """
-    Convert a PoB XML export into JSON structure.
-    Includes items, skills, links by slot, and rebuilds sockets while resolving proper slot assignment.
-    Handles dual-wield but does not handle can't tell which weapon is in main and which is in offhand.
-    """
-    root = ET.fromstring(pob_xml)
-    data = {"items": [], "skills": [], "linksBySlot": {}}
-
-    # -------------------
-    # Parse items
-    # -------------------
+# Parse Items
+def parse_items(root) -> list:
+    """Parse all <Item> elements into structured dictionaries."""
+    items = []
     for item_elem in root.findall(".//Item"):
-        # Basic skeleton of the json response
         item = {
             "name": None,
             "itemBase": None,
@@ -161,7 +143,6 @@ def pob_xml_to_json(pob_xml: str) -> dict:
             "type": None,
             "subType": None
         }
-        # Parse the item lines
         lines = [line.strip() for line in (item_elem.text or "").split("\n") if line.strip()]
         if not lines:
             continue
@@ -209,13 +190,15 @@ def pob_xml_to_json(pob_xml: str) -> dict:
                 item["properties"].append({"name": "Corrupted", "values": "True"})
             else:
                 item["explicitMods"].append(line)
-        data["items"].append(item)
 
-    # -------------------
-    # Parse skills (gems) and build links by slot
-    # -------------------
+        items.append(item)
+    return items
+
+# Parse Skills
+def parse_skills(root) -> (list, dict):
+    """Parse all <Skill> and <Gem> elements, return skills list and links_by_slot dict."""
+    skills = []
     links_by_slot = defaultdict(list)
-    # Get gems
     for skill_elem in root.findall(".//Skill"):
         group = []
         for gem_elem in skill_elem.findall(".//Gem"):
@@ -227,7 +210,6 @@ def pob_xml_to_json(pob_xml: str) -> dict:
             if gem.get("count") == "nil" and gem.get("enableGlobal2") == "nil":
                 continue
 
-            # Infer case where corrupted (based on +lvl or +quality or vaal)
             lvl = gem.get("level", 0)
             q = gem.get("quality", 0)
             is_awakened = contains_any_in_fields(gem, ["awakened"])
@@ -245,33 +227,22 @@ def pob_xml_to_json(pob_xml: str) -> dict:
             gem["Corrupted"] = corrupted
             group.append(gem)
 
-        # Add the group to the skill list if it's not empty
         if group:
             slot = skill_elem.attrib.get("slot", "Unknown")
-            data["skills"].append({"slot": slot, "gems": group})
+            skills.append({"slot": slot, "gems": group})
             link_repr = "-".join(["O"] * len(group))
             links_by_slot[slot].append(link_repr)
 
-    data["linksBySlot"] = {slot: " ".join(groups) for slot, groups in links_by_slot.items()}
+    return skills, {slot: " ".join(groups) for slot, groups in links_by_slot.items()}
 
-    # -------------------
-    # Infer type/subType using item_types.json
-    # -------------------
-    if ITEM_TYPE_MAPPING:
-        for item in data["items"]:
-            if item.get("itemBase"):
-                t, st = get_item_type_and_subtype(item["itemBase"], ITEM_TYPE_MAPPING)
-                item["type"] = t
-                item["subType"] = st
-
-    # -------------------
-    # Rebuild sockets with dual-wield / off-hand detection
-    # -------------------
+# Rebuild Sockets
+def rebuild_sockets(items: list, links_by_slot: dict) -> None:
+    """Rebuild socket strings per item using links_by_slot and resolve dual-wield/off-hand weapons."""
     valid_letters = set("BGRWA")
-    links_keys = set(data["linksBySlot"].keys())
-    occupied_slots = set()  # Track assigned slots to prevent duplicates and handle dual-wield properly
+    links_keys = set(links_by_slot.keys())
+    occupied_slots = set()
 
-    for item in data["items"]:
+    for item in items:
         socket_prop = next((p for p in item["properties"] if p["name"] == "Sockets"), None)
         if not socket_prop:
             continue
@@ -280,7 +251,7 @@ def pob_xml_to_json(pob_xml: str) -> dict:
         if not slot_name:
             continue
 
-        links_str = data["linksBySlot"].get(slot_name, "")
+        links_str = links_by_slot.get(slot_name, "")
         group_lengths = []
         if links_str:
             for group in links_str.split():
@@ -317,6 +288,32 @@ def pob_xml_to_json(pob_xml: str) -> dict:
             socket_prop["values"] = " ".join(parts)
         else:
             socket_prop["values"] = raw_val
+
+# Convert PoB XML to JSON
+def pob_xml_to_json(pob_xml: str) -> dict:
+    """Full PoB XML -> JSON parser using refactored helper functions."""
+    root = ET.fromstring(pob_xml)
+    data = {"items": [], "skills": [], "linksBySlot": {}}
+
+    # Parse items
+    items = parse_items(root)
+    data["items"] = items
+
+    # Parse skills and links
+    skills, links_by_slot = parse_skills(root)
+    data["skills"] = skills
+    data["linksBySlot"] = links_by_slot
+
+    # Infer type/subType
+    if ITEM_TYPE_MAPPING:
+        for item in items:
+            if item.get("itemBase"):
+                t, st = get_item_type_and_subtype(item["itemBase"], ITEM_TYPE_MAPPING)
+                item["type"] = t
+                item["subType"] = st
+
+    # Rebuild sockets with dual-wield support
+    rebuild_sockets(items, links_by_slot)
 
     return data
 
