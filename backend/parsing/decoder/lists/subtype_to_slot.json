@@ -1,0 +1,32 @@
+{
+    "Gloves": "Gloves",
+    "Helmet": "Helmet",
+    "Boots": "Boots",
+    "Body Armour": "Body Armour",
+
+    "Amulet": "Amulet",
+    "Ring": "Ring",
+    "Belt": "Belt",
+    "Flask": "Flask",
+
+    "Shield": "Weapon 2",
+    "Quiver": "Weapon 2",
+
+    "1H Sword": "Weapon 1",
+    "Thrusting 1H Sword": "Weapon 1",
+    "Claw": "Weapon 1",
+    "Dagger": "Weapon 1",
+    "Wand": "Weapon 1",
+    "1H Axe": "Weapon 1",
+    "1H Mace": "Weapon 1",
+    "Sceptre": "Weapon 1",
+    "Rune Dagger": "Weapon 1",
+
+    "2H Sword": "Weapon 1",
+    "2H Axe": "Weapon 1",
+    "2H Mace": "Weapon 1",
+    "Staff": "Weapon 1",
+    "Warstaff": "Weapon 1",
+    "Bow": "Weapon 1",
+    "Fishing Rod": "Weapon 1"
+}
