@@ -312,10 +312,20 @@ def pob_xml_to_json(pob_xml: str) -> dict:
                 item["type"] = t
                 item["subType"] = st
 
-    # Rebuild sockets with dual-wield support
+
     rebuild_sockets(items, links_by_slot)
 
     return data
+
+def decode_pob(pob_code: str) -> dict:
+    """
+    Methode to execute the full code (XML decoder + Parsing)
+    """
+    try:
+        xml_data = decode_pob_code(pob_code)
+        return pob_xml_to_json(xml_data)
+    except Exception as e:
+        return {"error": str(e)}
 
 # -------------------
 # Main Execution
