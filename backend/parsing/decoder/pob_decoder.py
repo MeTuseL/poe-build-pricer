@@ -8,7 +8,6 @@ from collections import defaultdict
 # -------------------
 # ITEM TYPES MAPPING
 # -------------------
-# Load item_types.json containing base item names and their type/subType.
 ITEM_TYPE_MAPPING = {}
 mapping_path = os.path.join(os.path.dirname(__file__), "lists/item_types.json")
 if os.path.exists(mapping_path):
@@ -18,7 +17,6 @@ if os.path.exists(mapping_path):
 # -------------------
 # SUBTYPE TO SLOT MAPPING
 # -------------------
-# Load subtype_to_slot.json to map item subTypes/types to PoB slots.
 SUBTYPE_TO_SLOT = {}
 subtype_slot_path = os.path.join(os.path.dirname(__file__), "lists/subtype_to_slot.json")
 if os.path.exists(subtype_slot_path):
@@ -26,13 +24,16 @@ if os.path.exists(subtype_slot_path):
         SUBTYPE_TO_SLOT = json.load(f)
 
 # -------------------
+# LINK ELIGIBLE SUBTYPES
+# -------------------
+LINK_ELIGIBLE_SUBTYPES = {
+    "Body Armour", "Bow", "Staff", "War staff", "2H Sword", "2H Axe", "2H Mace"
+}
+
+# -------------------
 # Utility Functions
 # -------------------
 def get_item_type_and_subtype(item_base: str, mapping: dict):
-    """
-    Returns the type and subType of an item given its base name.
-    mapping is done with ITEM_TYPE_MAPPING
-    """
     if not item_base or not mapping:
         return None, None
     for item_type, subtypes in mapping.items():
@@ -42,21 +43,14 @@ def get_item_type_and_subtype(item_base: str, mapping: dict):
     return None, None
 
 def decode_pob_code(pob_code: str) -> str:
-    """
-    Decodes a PoB code (base64 + zlib) and returns the raw XML string.
-    """
     pob_code = pob_code.strip()
     missing_padding = len(pob_code) % 4
     if missing_padding:
-        pob_code += '=' * (4 - missing_padding)  # Add missing padding because sometimes it's not there
+        pob_code += '=' * (4 - missing_padding)
     decoded = base64.urlsafe_b64decode(pob_code)
     return zlib.decompress(decoded).decode('utf-8')
 
 def contains_any_in_fields(gem: dict, keywords) -> bool:
-    """
-    Checks if any keyword exists in gem fields (skillId, variantId, nameSpec).
-    Used to detect "awakened", "enlighten", "vaal", etc.
-    """
     hay = " ".join([
         str(gem.get("skillId", "") or ""),
         str(gem.get("variantId", "") or ""),
@@ -65,33 +59,21 @@ def contains_any_in_fields(gem: dict, keywords) -> bool:
     return any(k.lower() in hay for k in keywords)
 
 # -------------------
-# Slot resolution logic with occupied_slots
+# Slot resolution logic
 # -------------------
 def resolve_slot_name_for_item(item: dict, links_keys: set, occupied_slots: set):
-    """
-    Determine the correct PoB slot for a given item.
-    Handles:
-      - Weapon cases (1H/2H, dual-wield, off-hand only)
-      - Shield / Quiver
-      - Fallback via SUBTYPE_TO_SLOT for armor, jewelry, flasks, etc.
-    Marks the chosen slot as occupied.
-    """
     sub = item.get("subType")
     typ = item.get("type")
 
-    # Special case: Weapons
     if typ == "Weapon" and sub:
-        # 2H or special weapons
         if "2H" in sub or sub in ["Bow", "Staff", "War staff", "Fishing Rod"]:
             if "Weapon 1" in links_keys and "Weapon 1" not in occupied_slots:
                 occupied_slots.add("Weapon 1")
                 return "Weapon 1"
-        # Shield or Quiver
         if sub in ["Shield", "Quiver"]:
             if "Weapon 2" in links_keys and "Weapon 2" not in occupied_slots:
                 occupied_slots.add("Weapon 2")
                 return "Weapon 2"
-        # 1H weapons
         if "1H" in sub or sub in ["Claw", "Dagger", "Wand", "Sceptre", "Rune Dagger"]:
             if "Weapon 1" in links_keys and "Weapon 1" not in occupied_slots:
                 occupied_slots.add("Weapon 1")
@@ -99,13 +81,11 @@ def resolve_slot_name_for_item(item: dict, links_keys: set, occupied_slots: set)
             elif "Weapon 2" in links_keys and "Weapon 2" not in occupied_slots:
                 occupied_slots.add("Weapon 2")
                 return "Weapon 2"
-            # fallback if both occupied
             if "Weapon 1" in links_keys:
                 return "Weapon 1"
             if "Weapon 2" in links_keys:
                 return "Weapon 2"
 
-    # Fallback for non-weapon items
     if sub and sub in links_keys and sub not in occupied_slots:
         occupied_slots.add(sub)
         return sub
@@ -126,11 +106,9 @@ def resolve_slot_name_for_item(item: dict, links_keys: set, occupied_slots: set)
     return None
 
 # -------------------
-# Convert PoB XML to JSON (refactored)
-# -------------------
 # Parse Items
+# -------------------
 def parse_items(root) -> list:
-    """Parse all <Item> elements into structured dictionaries."""
     items = []
     for item_elem in root.findall(".//Item"):
         item = {
@@ -141,7 +119,8 @@ def parse_items(root) -> list:
             "implicitMods": [],
             "explicitMods": [],
             "type": None,
-            "subType": None
+            "subType": None,
+            "5/6Link": False
         }
         lines = [line.strip() for line in (item_elem.text or "").split("\n") if line.strip()]
         if not lines:
@@ -152,13 +131,10 @@ def parse_items(root) -> list:
             item["name"] = lines[1]
         if len(lines) > 2:
             third_line = lines[2]
-            if any(third_line.startswith(prefix) for prefix in
-                   ["Unique ID:", "Item Level:", "Quality:", "LevelReq:", "Sockets:", "Implicits:"]):
-                item["itemBase"] = None
-            else:
+            if not any(third_line.startswith(prefix) for prefix in
+                       ["Unique ID:", "Item Level:", "Quality:", "LevelReq:", "Sockets:", "Implicits:"]):
                 item["itemBase"] = third_line
 
-        # Collect properties before Implicits
         num_implicits = 0
         mods_start_idx = 3
         for i, line in enumerate(lines[3:], start=3):
@@ -176,12 +152,9 @@ def parse_items(root) -> list:
             else:
                 item["properties"].append({"name": line, "values": "True"})
 
-        # Implicit mods
         for i in range(mods_start_idx, mods_start_idx + num_implicits):
             if i < len(lines):
                 item["implicitMods"].append(lines[i])
-
-        # Explicit mods
         for i in range(mods_start_idx + num_implicits, len(lines)):
             line = lines[i]
             if not line:
@@ -194,9 +167,10 @@ def parse_items(root) -> list:
         items.append(item)
     return items
 
+# -------------------
 # Parse Skills
+# -------------------
 def parse_skills(root) -> (list, dict):
-    """Parse all <Skill> and <Gem> elements, return skills list and links_by_slot dict."""
     skills = []
     links_by_slot = defaultdict(list)
     for skill_elem in root.findall(".//Skill"):
@@ -235,9 +209,10 @@ def parse_skills(root) -> (list, dict):
 
     return skills, {slot: " ".join(groups) for slot, groups in links_by_slot.items()}
 
-# Rebuild Sockets
+# -------------------
+# Rebuild Sockets + Max Link
+# -------------------
 def rebuild_sockets(items: list, links_by_slot: dict) -> None:
-    """Rebuild socket strings per item using links_by_slot and resolve dual-wield/off-hand weapons."""
     valid_letters = set("BGRWA")
     links_keys = set(links_by_slot.keys())
     occupied_slots = set()
@@ -245,10 +220,12 @@ def rebuild_sockets(items: list, links_by_slot: dict) -> None:
     for item in items:
         socket_prop = next((p for p in item["properties"] if p["name"] == "Sockets"), None)
         if not socket_prop:
+            item["5/6Link"] = False
             continue
 
         slot_name = resolve_slot_name_for_item(item, links_keys, occupied_slots)
         if not slot_name:
+            item["5/6Link"] = False
             continue
 
         links_str = links_by_slot.get(slot_name, "")
@@ -289,22 +266,37 @@ def rebuild_sockets(items: list, links_by_slot: dict) -> None:
         else:
             socket_prop["values"] = raw_val
 
-# Convert PoB XML to JSON
-def pob_xml_to_json(pob_xml: str) -> dict:
-    """Full PoB XML -> JSON parser using refactored helper functions."""
-    root = ET.fromstring(pob_xml)
-    data = {"items": [], "skills": [], "linksBySlot": {}}
+        # Compute 5/6Link
+        if item.get("subType") in LINK_ELIGIBLE_SUBTYPES:
+            max_group_len = max((len(g) for g in assigned), default=0)
+            item["5/6Link"] = max_group_len if max_group_len >= 5 else False
+        else:
+            item["5/6Link"] = False
 
-    # Parse items
+# -------------------
+# Convert PoB XML to JSON
+# -------------------
+def pob_xml_to_json(pob_xml: str) -> dict:
+    root = ET.fromstring(pob_xml)
+    build_elem = root.find(".//Build")
+    character_class = build_elem.attrib.get("className") if build_elem is not None else None
+    ascend_class = build_elem.attrib.get("ascendClassName") if build_elem is not None else None
+
+    data = {
+        "class": character_class,
+        "ascendClass": ascend_class,
+        "items": [],
+        "skills": [],
+        "linksBySlot": {}
+    }
+
     items = parse_items(root)
     data["items"] = items
 
-    # Parse skills and links
     skills, links_by_slot = parse_skills(root)
     data["skills"] = skills
     data["linksBySlot"] = links_by_slot
 
-    # Infer type/subType
     if ITEM_TYPE_MAPPING:
         for item in items:
             if item.get("itemBase"):
@@ -312,15 +304,13 @@ def pob_xml_to_json(pob_xml: str) -> dict:
                 item["type"] = t
                 item["subType"] = st
 
-
     rebuild_sockets(items, links_by_slot)
-
     return data
 
+# -------------------
+# Decode full PoB code
+# -------------------
 def decode_pob(pob_code: str) -> dict:
-    """
-    Methode to execute the full code (XML decoder + Parsing)
-    """
     try:
         xml_data = decode_pob_code(pob_code)
         return pob_xml_to_json(xml_data)
@@ -335,7 +325,6 @@ if __name__ == "__main__":
     output_dir = os.path.join("parsing", "output_test")
     os.makedirs(output_dir, exist_ok=True)
 
-    # Export raw XML
     try:
         xml_data = decode_pob_code(pob_code)
         raw_path = os.path.join(output_dir, "raw_pob.xml")
@@ -345,7 +334,6 @@ if __name__ == "__main__":
     except Exception as e:
         print("Error decoding PoB raw code:", e)
 
-    # Export XML to JSON
     try:
         json_data = pob_xml_to_json(xml_data)
         json_path = os.path.join(output_dir, "pob_output.json")

@@ -3,12 +3,14 @@ import json
 import requests
 from parsing.decoder.pob_decoder import decode_pob
 
-
 # -----------------------
-# Fetch prices from poe.ninja
+# Fetch prices from poe.ninja (with 5/6 link support)
 # -----------------------
 def fetch_unique_prices(league: str = "Standard") -> dict:
-    """Fetch all unique items (chaos equivalent) from poe.ninja for the given league."""
+    """
+    Fetch all unique items (chaos equivalent) from poe.ninja.
+    Stores base price and 5/6 link prices if applicable.
+    """
     categories = [
         "UniqueArmour", "UniqueWeapon", "UniqueAccessory",
         "UniqueFlask", "UniqueJewel"
@@ -20,31 +22,42 @@ def fetch_unique_prices(league: str = "Standard") -> dict:
             r = requests.get(url, timeout=10)
             r.raise_for_status()
             data = r.json()
-            # Iterate over all items returned by the API
             for line in data.get("lines", []):
                 name = line.get("name")
                 chaos = line.get("chaosValue")
-                # Store the chaos price if available
-                if name and chaos is not None:
-                    prices[name] = chaos
+                if not name or chaos is None:
+                    continue
+
+                # Base price (without considering links)
+                prices[name] = chaos
+
+                # If the item is a linkable armour/weapon, store 5/6 link prices
+                if cat in ["UniqueArmour", "UniqueWeapon"]:
+                    links = line.get("links")
+                    if links in [5, 6]:
+                        # Store price keyed by "Item Name (5L)" or "Item Name (6L)"
+                        prices[f"{name} ({links}L)"] = chaos
+
         except Exception as e:
             print(f"Error fetching {cat}: {e}")
     return prices
-
-
+# -----------------------
+# Fetch gems
+# -----------------------
 def fetch_gems_with_levels(league: str = "Standard") -> list:
     """Fetch all gems (including levels and quality) from poe.ninja."""
     url = f"https://poe.ninja/api/data/itemoverview?league={league}&type=SkillGem"
     try:
         r = requests.get(url, timeout=10)
         r.raise_for_status()
-        # Return the list of gem entries
         return r.json().get("lines", [])
     except Exception as e:
         print(f"Error fetching SkillGem: {e}")
         return []
 
-
+# -----------------------
+# Chaos to divine rate
+# -----------------------
 def fetch_chaos_to_divine_rate(league: str = "Standard") -> float:
     """Fetch the conversion rate from chaos to divine orbs."""
     url = f"https://poe.ninja/api/data/currencyoverview?league={league}&type=Currency"
@@ -52,7 +65,6 @@ def fetch_chaos_to_divine_rate(league: str = "Standard") -> float:
         r = requests.get(url, timeout=10)
         r.raise_for_status()
         data = r.json()
-        # Search for Divine Orb entry
         for line in data.get("lines", []):
             if line.get("currencyTypeName") == "Divine Orb":
                 return line.get("chaosEquivalent")
@@ -60,14 +72,12 @@ def fetch_chaos_to_divine_rate(league: str = "Standard") -> float:
         print(f"Error fetching chaos/divine rate: {e}")
     return None
 
-
 # -----------------------
 # Helper
 # -----------------------
 def normalize_name(name: str) -> str:
     """Normalize gem names for comparison (lowercase, remove ' support')."""
     return name.lower().replace(" support", "").strip()
-
 
 # -----------------------
 # GEM PRICE FINDER
@@ -86,34 +96,26 @@ def find_gem_price(gem, gems_list, chaos_to_div):
     gem_quality = int(gem.get("quality", 0))
     name_lower = normalize_name(gem_name)
 
-    # Determine fallback levels based on gem type
+    # Determine fallback levels
     if "awakened" in name_lower:
         fallback_levels = [gem_level, 6, 5, 1]
     elif any(x in name_lower for x in ["empower", "enlighten", "enhance"]):
         fallback_levels = [gem_level, 4, 3, 1]
     else:
-        if gem_quality == 0 and gem_level > 1:
-            fallback_levels = [gem_level, 1]  # Skip high quality fallback
-        else:
-            fallback_levels = [gem_level, 21, 20, 1]
+        fallback_levels = [gem_level, 21, 20, 1] if gem_quality != 0 else [gem_level, 1]
 
     # Determine fallback qualities
-    if gem_quality == 0 and gem_level > 1:
-        fallback_qualities = [0]  # Only fallback quality 0
-    else:
-        fallback_qualities = [gem_quality, 23, 20, 0]
+    fallback_qualities = [gem_quality, 23, 20, 0] if not (gem_quality == 0 and gem_level > 1) else [0]
 
-    # Iterate through all level x quality combinations
+    # Search for exact match or fallback
     for lvl in fallback_levels:
         for qual in fallback_qualities:
             for g in gems_list:
                 g_name = normalize_name(g.get("name") or g.get("baseType", ""))
-                # Skip if name does not match
                 if g_name != name_lower:
                     variant = g.get("variant", "")
                     if variant.lower() not in name_lower:
                         continue
-                # Check if both level and quality match
                 if int(g.get("gemLevel", 0)) == lvl and int(g.get("gemQuality", 0)) == qual:
                     return {
                         "priceChaos": g.get("chaosValue"),
@@ -135,15 +137,7 @@ def find_gem_price(gem, gems_list, chaos_to_div):
                 "fallbackUsed": True
             }
 
-    # If nothing matches, return None values
-    return {
-        "priceChaos": None,
-        "priceDivine": None,
-        "matchedLevel": None,
-        "matchedQuality": None,
-        "fallbackUsed": True
-    }
-
+    return {"priceChaos": None, "priceDivine": None, "matchedLevel": None, "matchedQuality": None, "fallbackUsed": True}
 
 # -----------------------
 # Add prices to PoB JSON
@@ -160,26 +154,36 @@ def add_prices_to_json(pob_json: dict, league: str = "Standard", debug: bool = F
     gems_list = fetch_gems_with_levels(league)
     chaos_to_div = fetch_chaos_to_divine_rate(league)
 
-    # ----- Items -----
+    linkable_types = ["Body Armour", "Bow", "Staff", "War staff", "2H Sword", "2H Axe", "2H Mace"]
+
+    # Items
     for item in pob_json.get("items", []):
         rarity = item.get("rarity", "").upper()
         name = item.get("name")
         chaos_price = None
         divine_price = None
+
+        # Determine link count if applicable
+        links = None
+        if item.get("subType") in linkable_types:
+            links = item.get("5/6Link")  # PoB JSON already contains 5/6 link info
+
+        # Lookup price
         if rarity == "UNIQUE":
-            chaos_price = prices_dict.get(name)
+            if links in [5, 6]:
+                chaos_price = prices_dict.get(f"{name} ({links}L)")
+            if chaos_price is None:
+                chaos_price = prices_dict.get(name)
             if chaos_price is not None and chaos_to_div:
                 divine_price = round(chaos_price / chaos_to_div, 2)
+
         item["priceChaos"] = chaos_price
         item["priceDivine"] = divine_price
-        if debug:
-            print(f"[DEBUG] {rarity}: {name} → Chaos: {chaos_price}, Divine: {divine_price}")
 
-    # ----- Gems -----
+    # Gems
     for skill_slot in pob_json.get("skills", []):
         for gem in skill_slot.get("gems", []):
             prices = find_gem_price(gem, gems_list, chaos_to_div)
-            # Update gem info with prices and fallback status
             gem["priceChaos"] = prices["priceChaos"]
             gem["priceDivine"] = prices["priceDivine"]
             gem["matchedLevel"] = prices["matchedLevel"]

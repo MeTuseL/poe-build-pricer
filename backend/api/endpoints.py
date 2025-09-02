@@ -1,7 +1,7 @@
 from ninja import Router
 from .schemas import PobDecodeRequest, PobDecodeResponseAny, PobPriceResponseAny
 from parsing.decoder.pob_decoder import pob_xml_to_json, decode_pob_code
-from parsing.pricing.poeninja_pricer import add_prices_to_json
+from parsing.pricer.poeninja_pricer import add_prices_to_json
 
 router = Router()
 
