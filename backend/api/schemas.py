@@ -6,3 +6,6 @@ class PobDecodeResponseAny(Schema):
 
 class PobDecodeRequest(Schema):
     pob_string: str
+
+class PobPriceResponseAny(Schema):
+    data: Dict[str, Any]
