@@ -1,6 +1,8 @@
+import os
+
 import requests
-import xml.etree.ElementTree as ET
-from xml.dom import minidom
+import json
+
 
 POE_API_URL = "https://www.pathofexile.com/character-window/get-items"
 
@@ -29,48 +31,62 @@ def fetch_account_data(account_name: str, character_name: str, poesessid: str) -
     return resp.json()
 
 
-def poe_api_json_to_pob_xml(api_data: dict) -> str:
-    """
-    Convert PoE API JSON data into a simplified PoB XML format.
-    """
-    root = ET.Element("PathOfBuilding")
+def poe_api_to_json(api_data: dict) -> dict:
+    """Convert PoE API JSON into unified JSON schema."""
+    data = {"character": {}, "items": [], "skills": []}
 
-    # Items section
-    items_elem = ET.SubElement(root, "Items")
+    # Character info
+    character_info = api_data.get("character", {})
+    data["character"] = {
+        "name": character_info.get("name"),
+        "class": character_info.get("class"),
+        "level": character_info.get("level")
+    }
+
+    # Items
     for item in api_data.get("items", []):
-        item_elem = ET.SubElement(items_elem, "Item")
-        lines = [f"Rarity: {item.get('frameType', 'Unknown')}"]
-        lines.append(item.get("name", "Unknown"))
-        lines.append(item.get("typeLine", "Unknown"))
+        data["items"].append({
+            "name": item.get("name"),
+            "typeLine": item.get("typeLine"),
+            "rarity": item.get("frameType"),
+            "properties": item.get("properties", []),
+            "implicitMods": item.get("implicitMods", []),
+            "explicitMods": item.get("explicitMods", [])
+        })
 
-        if "properties" in item:
-            for prop in item["properties"]:
-                lines.append(f"{prop.get('name', '')}: {prop.get('values', '')}")
-
-        if "implicitMods" in item:
-            lines.extend(item["implicitMods"])
-        if "explicitMods" in item:
-            lines.extend(item["explicitMods"])
-
-        item_elem.text = "\n".join(lines)
-
-    # Skills section
-    skills_elem = ET.SubElement(root, "Skills")
+    # Skills
     for skill in api_data.get("skills", []):
-        skill_elem = ET.SubElement(skills_elem, "Skill", slot=skill.get("socketName", "Unknown Slot"))
+        skill_dict = {"slot": skill.get("socketName", "Unknown Slot"), "gems": []}
         for gem in skill.get("gems", []):
-            gem_attrs = {
-                "nameSpec": gem.get("name", ""),
-                "skillId": gem.get("skillId", ""),
-                "level": str(gem.get("level", "")),
-                "quality": str(gem.get("quality", "")),
-                "enabled": str(gem.get("enabled", True)).lower(),
-                "gemId": gem.get("gemId", ""),
-                "variantId": gem.get("variantId", "")
-            }
-            ET.SubElement(skill_elem, "Gem", **gem_attrs)
+            gem_copy = gem.copy()
+            gem_copy["enabled"] = gem_copy.get("enabled", True)
+            skill_dict["gems"].append(gem_copy)
+        data["skills"].append(skill_dict)
 
-    # Beautify XML
-    rough_string = ET.tostring(root, encoding="utf-8")
-    reparsed = minidom.parseString(rough_string)
-    return reparsed.toprettyxml(indent="  ")
+    return data
+
+if __name__ == "__main__":
+    account_name = input("Enter account name: ").strip()
+    character_name = input("Enter character name: ").strip()
+    poesessid = input("Enter POESESSID: ").strip()
+
+    output_dir = os.path.join("parsing", "output_test")
+    os.makedirs(output_dir, exist_ok=True)
+
+    try:
+        api_data = fetch_account_data(account_name, character_name, poesessid)
+        raw_path = os.path.join(output_dir, "raw_account.json")
+        with open(raw_path, "w", encoding="utf-8") as f:
+            json.dump(api_data, f, ensure_ascii=False, indent=2)
+        print(f"Raw account JSON saved to {raw_path}")
+    except Exception as e:
+        print("Error fetching account raw data:", e)
+
+    try:
+        json_data = poe_api_to_json(api_data)
+        json_path = os.path.join(output_dir, "account_output.json")
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(json_data, f, ensure_ascii=False, indent=2)
+        print(f"JSON saved to {json_path}")
+    except Exception as e:
+        print("Error fetching account parsed data:", e)

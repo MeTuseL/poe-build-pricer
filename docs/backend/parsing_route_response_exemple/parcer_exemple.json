@@ -1,0 +1,1528 @@
+{
+  "class": "Scion",
+  "ascendClass": "Ascendant",
+  "items": [
+    {
+      "name": "The Arkhon's Tools",
+      "itemBase": "Cloth Belt",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "c02c2c6f5514582038a50e6d84da1bbdc10fef7307530b42b4b4cf67787bfa85"
+        },
+        {
+          "name": "Item Level",
+          "values": "86"
+        },
+        {
+          "name": "LevelReq",
+          "values": "16"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        },
+        {
+          "name": "Corrupted",
+          "values": "True"
+        }
+      ],
+      "implicitMods": [
+        "Anger has 17% increased Aura Effect",
+        "Discipline has 15% increased Aura Effect"
+      ],
+      "explicitMods": [
+        "+20 to Dexterity and Intelligence",
+        "24% increased Mana Reservation Efficiency of Skills",
+        "Summon Skitterbots also summons a Scorching Skitterbot",
+        "Summoned Skitterbots' Auras affect you as well as Enemies",
+        "56% increased Effect of Non-Damaging Ailments inflicted by Summoned Skitterbots",
+        "15% increased Trap and Mine Throwing Speed"
+      ],
+      "type": "Jewelry",
+      "subType": "Belts",
+      "5/6Link": false
+    },
+    {
+      "name": "Dusk Cloak",
+      "itemBase": "Twilight Regalia",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Energy Shield",
+          "values": "858"
+        },
+        {
+          "name": "EnergyShieldBasePercentile",
+          "values": "0.7007"
+        },
+        {
+          "name": "Unique ID",
+          "values": "a436175cd2f0f7c2e9baab6d2c9bbf656550bbd500018b9433cf4ba498cefb30"
+        },
+        {
+          "name": "Crusader Item",
+          "values": "True"
+        },
+        {
+          "name": "Redeemer Item",
+          "values": "True"
+        },
+        {
+          "name": "Item Level",
+          "values": "94"
+        },
+        {
+          "name": "Quality",
+          "values": "24"
+        },
+        {
+          "name": "Sockets",
+          "values": "R-G-B-G-B-R"
+        },
+        {
+          "name": "LevelReq",
+          "values": "84"
+        },
+        {
+          "name": "Implicits",
+          "values": "0"
+        }
+      ],
+      "implicitMods": [],
+      "explicitMods": [
+        "+1 to Level of Socketed Intelligence Gems",
+        "11% increased Intelligence",
+        "96% increased Energy Shield",
+        "+19% to Cold Resistance",
+        "7% increased Stun and Block Recovery",
+        "26% increased effect of Non-Curse Auras from your Skills",
+        "{crafted}+63 to maximum Energy Shield"
+      ],
+      "type": "Armour",
+      "subType": "Body Armour",
+      "5/6Link": 6
+    },
+    {
+      "name": "Ventor's Gamble",
+      "itemBase": "Gold Ring",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "39a64b05581ded5e990bea14213dae85aaeed85ff2de640b19072d3a6600b189"
+        },
+        {
+          "name": "Item Level",
+          "values": "83"
+        },
+        {
+          "name": "LevelReq",
+          "values": "20"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        },
+        {
+          "name": "Corrupted",
+          "values": "True"
+        }
+      ],
+      "implicitMods": [
+        "Cannot be Ignited",
+        "Hatred has 19% increased Aura Effect"
+      ],
+      "explicitMods": [
+        "+24 to maximum Life",
+        "8% reduced Rarity of Items found",
+        "+27% to Fire Resistance",
+        "+14% to Cold Resistance",
+        "+25% to Lightning Resistance",
+        "12% increased Mana Reservation Efficiency of Skills"
+      ],
+      "type": "Jewelry",
+      "subType": "Rings",
+      "5/6Link": false
+    },
+    {
+      "name": "The Jinxed Juju",
+      "itemBase": "Citrine Amulet",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "b47fcb8bd451abaf39de23bfa1706145b043efeb876feca411603f1c4f48abb4"
+        },
+        {
+          "name": "Item Level",
+          "values": "76"
+        },
+        {
+          "name": "LevelReq",
+          "values": "16"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Allocates Leader of the Pack",
+        "+24 to Strength and Dexterity"
+      ],
+      "explicitMods": [
+        "+30 to Intelligence",
+        "+25% to Chaos Resistance",
+        "15% increased effect of Non-Curse Auras from your Skills",
+        "10% of Damage from Hits is taken from your Raised Spectres' Life before you"
+      ],
+      "type": "Jewelry",
+      "subType": "Amulets",
+      "5/6Link": false
+    },
+    {
+      "name": "Bubonic Trail",
+      "itemBase": "Murder Boots",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Evasion",
+          "values": "186"
+        },
+        {
+          "name": "EvasionBasePercentile",
+          "values": "0.0357"
+        },
+        {
+          "name": "Energy Shield",
+          "values": "18"
+        },
+        {
+          "name": "EnergyShieldBasePercentile",
+          "values": "0"
+        },
+        {
+          "name": "Unique ID",
+          "values": "a1dfea09080a998fd4f9b87f03e1c7a8882e25ddd17537e858c11cdae820e1fa"
+        },
+        {
+          "name": "Item Level",
+          "values": "85"
+        },
+        {
+          "name": "Quality",
+          "values": "0"
+        },
+        {
+          "name": "Sockets",
+          "values": "B G G A"
+        },
+        {
+          "name": "LevelReq",
+          "values": "69"
+        },
+        {
+          "name": "Implicits",
+          "values": "0"
+        }
+      ],
+      "implicitMods": [],
+      "explicitMods": [
+        "Has 1 Abyssal Socket",
+        "Triggers Level 20 Death Walk when Equipped",
+        "42% reduced Duration of Elemental Ailments on You while affected by a Rare Abyss Jewel",
+        "28% increased Movement Speed while affected by a Magic Abyss Jewel",
+        "22% increased Reservation Efficiency of Skills while affected by a Unique Abyss Jewel"
+      ],
+      "type": "Armour",
+      "subType": "Boots",
+      "5/6Link": false
+    },
+    {
+      "name": "Ephemeral Edge",
+      "itemBase": "Dusk Blade",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "c0626addd7662472ded914ccb2c46c52d7dbcec224e3de025fae4d3b062a156b"
+        },
+        {
+          "name": "Item Level",
+          "values": "35"
+        },
+        {
+          "name": "Quality",
+          "values": "0"
+        },
+        {
+          "name": "Sockets",
+          "values": "R-G-G"
+        },
+        {
+          "name": "LevelReq",
+          "values": "32"
+        },
+        {
+          "name": "Implicits",
+          "values": "1"
+        }
+      ],
+      "implicitMods": [
+        "40% increased Global Accuracy Rating"
+      ],
+      "explicitMods": [
+        "+10 to Intelligence",
+        "Adds 1 to 75 Lightning Damage",
+        "50% increased Global Critical Strike Chance",
+        "42% increased maximum Energy Shield",
+        "25% reduced maximum Life",
+        "Attacks with this Weapon have Added Maximum Lightning Damage equal to 13% of Player's Maximum Energy Shield"
+      ],
+      "type": "Weapon",
+      "subType": "1H Sword",
+      "5/6Link": false
+    },
+    {
+      "name": "Alpha's Howl",
+      "itemBase": "Sinner Tricorne",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Evasion",
+          "values": "790"
+        },
+        {
+          "name": "EvasionBasePercentile",
+          "values": "0.6824"
+        },
+        {
+          "name": "Unique ID",
+          "values": "cd2572d36f8089cf7b71292059d30ca588948b3abc5ea41fe47488aef9b50d5c"
+        },
+        {
+          "name": "Item Level",
+          "values": "85"
+        },
+        {
+          "name": "Quality",
+          "values": "0"
+        },
+        {
+          "name": "Sockets",
+          "values": "B-B-R-G"
+        },
+        {
+          "name": "LevelReq",
+          "values": "64"
+        },
+        {
+          "name": "Implicits",
+          "values": "1"
+        },
+        {
+          "name": "Corrupted",
+          "values": "True"
+        }
+      ],
+      "implicitMods": [
+        "10% increased effect of Non-Curse Auras from your Skills"
+      ],
+      "explicitMods": [
+        "+2 to Level of Socketed Aura Gems",
+        "94% increased Evasion Rating",
+        "+28% to Cold Resistance",
+        "Cannot be Frozen",
+        "25% chance to Avoid being Chilled",
+        "16% increased Mana Reservation Efficiency of Skills"
+      ],
+      "type": "Armour",
+      "subType": "Helmet",
+      "5/6Link": false
+    },
+    {
+      "name": "Phoenix Grasp",
+      "itemBase": "Two-Stone Ring",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "f1f36046b10c133891c34e285c98d0a74d5391193347f5811a0be14490dd22ec"
+        },
+        {
+          "name": "Item Level",
+          "values": "83"
+        },
+        {
+          "name": "LevelReq",
+          "values": "57"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        },
+        {
+          "name": "Corrupted",
+          "values": "True"
+        }
+      ],
+      "implicitMods": [
+        "Anger has 20% increased Aura Effect",
+        "Wrath has 15% increased Aura Effect"
+      ],
+      "explicitMods": [
+        "+38 to Strength",
+        "+19 to maximum Energy Shield",
+        "+60 to maximum Life",
+        "+42% to Fire Resistance"
+      ],
+      "type": "Jewelry",
+      "subType": "Rings",
+      "5/6Link": false
+    },
+    {
+      "name": "Matua Tupuna",
+      "itemBase": "Tarnished Spirit Shield",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Energy Shield",
+          "values": "34"
+        },
+        {
+          "name": "EnergyShieldBasePercentile",
+          "values": "0.0625"
+        },
+        {
+          "name": "Unique ID",
+          "values": "e8d4860a9a1589c64d239b2d67dc9969347ceedb1210a912c1cf41c7bcffc1e0"
+        },
+        {
+          "name": "Item Level",
+          "values": "84"
+        },
+        {
+          "name": "Quality",
+          "values": "0"
+        },
+        {
+          "name": "Sockets",
+          "values": "R-B-B"
+        },
+        {
+          "name": "LevelReq",
+          "values": "23"
+        },
+        {
+          "name": "Implicits",
+          "values": "1"
+        },
+        {
+          "name": "Corrupted",
+          "values": "True"
+        }
+      ],
+      "implicitMods": [
+        "+2 to Level of Socketed Minion Gems"
+      ],
+      "explicitMods": [
+        "+2 to Level of Socketed Minion Gems",
+        "60% increased Energy Shield",
+        "+21 to maximum Mana",
+        "20% increased effect of Non-Curse Auras from your Skills on your Minions",
+        "20% increased effect of Non-Curse Auras from your Skills",
+        "Spreads Tar when you Block"
+      ],
+      "type": "Offhand",
+      "subType": "Shields",
+      "5/6Link": false
+    },
+    {
+      "name": "Vaal Caress",
+      "itemBase": "Bronzescale Gauntlets",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Armour",
+          "values": "125"
+        },
+        {
+          "name": "ArmourBasePercentile",
+          "values": "0.2472"
+        },
+        {
+          "name": "Evasion",
+          "values": "125"
+        },
+        {
+          "name": "EvasionBasePercentile",
+          "values": "0.2472"
+        },
+        {
+          "name": "Unique ID",
+          "values": "06e720ceb019108927367237f7348f8deaaac339296f5e9b9a5afd28316c33e2"
+        },
+        {
+          "name": "Item Level",
+          "values": "82"
+        },
+        {
+          "name": "Quality",
+          "values": "0"
+        },
+        {
+          "name": "Sockets",
+          "values": "B-B R-G"
+        },
+        {
+          "name": "LevelReq",
+          "values": "27"
+        },
+        {
+          "name": "Implicits",
+          "values": "1"
+        },
+        {
+          "name": "Corrupted",
+          "values": "True"
+        }
+      ],
+      "implicitMods": [
+        "+2 to Level of Socketed Duration Gems"
+      ],
+      "explicitMods": [
+        "+5 to Level of Socketed Vaal Gems",
+        "-5 to Level of Socketed Non-Vaal Gems",
+        "136% increased Armour and Evasion",
+        "+66 to maximum Life",
+        "+40% to Cold Resistance",
+        "You gain Onslaught for 20 seconds on using a Vaal Skill"
+      ],
+      "type": "Armour",
+      "subType": "Gloves",
+      "5/6Link": false
+    },
+    {
+      "name": "Medic's Quicksilver Flask of the Petrel",
+      "itemBase": null,
+      "rarity": "MAGIC",
+      "properties": [
+        {
+          "name": "Item Level",
+          "values": "76"
+        },
+        {
+          "name": "Quality",
+          "values": "0"
+        },
+        {
+          "name": "LevelReq",
+          "values": "6"
+        },
+        {
+          "name": "Implicits",
+          "values": "0"
+        }
+      ],
+      "implicitMods": [],
+      "explicitMods": [
+        "15% chance to gain a Flask Charge when you deal a Critical Strike",
+        "41% reduced Effect of Curses on you during Effect"
+      ],
+      "type": null,
+      "subType": null,
+      "5/6Link": false
+    },
+    {
+      "name": "Quartz Flask of the Sea Lion",
+      "itemBase": null,
+      "rarity": "MAGIC",
+      "properties": [
+        {
+          "name": "Item Level",
+          "values": "71"
+        },
+        {
+          "name": "Quality",
+          "values": "0"
+        },
+        {
+          "name": "LevelReq",
+          "values": "27"
+        },
+        {
+          "name": "Implicits",
+          "values": "1"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Used when Charges reach full"
+      ],
+      "explicitMods": [
+        "40% chance to Avoid being Chilled during Effect",
+        "40% chance to Avoid being Frozen during Effect"
+      ],
+      "type": null,
+      "subType": null,
+      "5/6Link": false
+    },
+    {
+      "name": "Scholar's Jade Flask of the Ibex",
+      "itemBase": null,
+      "rarity": "MAGIC",
+      "properties": [
+        {
+          "name": "Item Level",
+          "values": "73"
+        },
+        {
+          "name": "Quality",
+          "values": "0"
+        },
+        {
+          "name": "LevelReq",
+          "values": "46"
+        },
+        {
+          "name": "Implicits",
+          "values": "1"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Used when Charges reach full"
+      ],
+      "explicitMods": [
+        "18% reduced Charges per use",
+        "55% increased Evasion Rating during Effect"
+      ],
+      "type": null,
+      "subType": null,
+      "5/6Link": false
+    },
+    {
+      "name": "Physician's Granite Flask of the Abalone",
+      "itemBase": null,
+      "rarity": "MAGIC",
+      "properties": [
+        {
+          "name": "Item Level",
+          "values": "74"
+        },
+        {
+          "name": "Quality",
+          "values": "0"
+        },
+        {
+          "name": "LevelReq",
+          "values": "27"
+        },
+        {
+          "name": "Implicits",
+          "values": "1"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Used when Charges reach full"
+      ],
+      "explicitMods": [
+        "17% chance to gain a Flask Charge when you deal a Critical Strike",
+        "42% increased Armour during Effect"
+      ],
+      "type": null,
+      "subType": null,
+      "5/6Link": false
+    },
+    {
+      "name": "Foe Ornament",
+      "itemBase": "Small Cluster Jewel",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "3b46df5afd4d58b92f76e5ecabba92b7a5a9cf490df2a07e162f37d8ca0e0c44"
+        },
+        {
+          "name": "Item Level",
+          "values": "83"
+        },
+        {
+          "name": "LevelReq",
+          "values": "62"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Adds 3 Passive Skills",
+        "{crafted}Added Small Passive Skills grant: 6% increased Mana Reservation Efficiency of Skills"
+      ],
+      "explicitMods": [
+        "Added Small Passive Skills also grant: +2 to Dexterity",
+        "Added Small Passive Skills also grant: +2% to all Elemental Resistances",
+        "Added Small Passive Skills also grant: +14 to Maximum Energy Shield"
+      ],
+      "type": "Jewel",
+      "subType": "Cluster Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Impossible Escape",
+      "itemBase": "Viridian Jewel",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "3e52825c4cec4a50cb237de4203f70753c98738294bcfdf3e05de44cee6879ae"
+        },
+        {
+          "name": "Item Level",
+          "values": "87"
+        },
+        {
+          "name": "Radius",
+          "values": "Small"
+        },
+        {
+          "name": "Implicits",
+          "values": "0"
+        },
+        {
+          "name": "Corrupted",
+          "values": "True"
+        }
+      ],
+      "implicitMods": [],
+      "explicitMods": [
+        "Passives in Radius of Hex Master can be Allocated",
+        "without being connected to your tree"
+      ],
+      "type": "Jewel",
+      "subType": "Base Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Glorious Vanity",
+      "itemBase": "Timeless Jewel",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "497779fe456fecf1b483a3de88e03eb1a266461d63a65528fc60c0de88abd181"
+        },
+        {
+          "name": "Item Level",
+          "values": "84"
+        },
+        {
+          "name": "Radius",
+          "values": "Large"
+        },
+        {
+          "name": "Implicits",
+          "values": "0"
+        }
+      ],
+      "implicitMods": [],
+      "explicitMods": [
+        "Bathed in the blood of 294 sacrificed in the name of Doryani",
+        "Passives in radius are Conquered by the Vaal",
+        "Historic"
+      ],
+      "type": "Jewel",
+      "subType": "Timeless Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Phoenix Heart",
+      "itemBase": "Small Cluster Jewel",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "ba8a573a4131f8bfd918131196827ace3a86368b1e07d50addbe6fce422e46bc"
+        },
+        {
+          "name": "Item Level",
+          "values": "83"
+        },
+        {
+          "name": "LevelReq",
+          "values": "62"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Adds 3 Passive Skills",
+        "{crafted}Added Small Passive Skills grant: 6% increased Mana Reservation Efficiency of Skills"
+      ],
+      "explicitMods": [
+        "Added Small Passive Skills also grant: 2% increased Damage",
+        "Added Small Passive Skills also grant: +10 to Dexterity",
+        "Added Small Passive Skills also grant: +16 to Maximum Energy Shield"
+      ],
+      "type": "Jewel",
+      "subType": "Cluster Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Blight Star",
+      "itemBase": "Small Cluster Jewel",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "21e9107e87afff75ee1a060e3f6d7d006cb1403ae434de22c79ce4d7172c2430"
+        },
+        {
+          "name": "Item Level",
+          "values": "85"
+        },
+        {
+          "name": "LevelReq",
+          "values": "67"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Adds 3 Passive Skills",
+        "{crafted}Added Small Passive Skills grant: 6% increased Mana Reservation Efficiency of Skills"
+      ],
+      "explicitMods": [
+        "Added Small Passive Skills also grant: +20 to Armour",
+        "Added Small Passive Skills also grant: +5 to Intelligence",
+        "Added Small Passive Skills also grant: Regenerate 0.15% of Life per Second",
+        "Added Small Passive Skills have 35% increased Effect"
+      ],
+      "type": "Jewel",
+      "subType": "Cluster Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Luminous Stone",
+      "itemBase": "Large Cluster Jewel",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "2bb96489cee589cd639b34a7e4ff73d8e09264e69524b47a8228d39611001932"
+        },
+        {
+          "name": "Item Level",
+          "values": "47"
+        },
+        {
+          "name": "Implicits",
+          "values": "3"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Adds 8 Passive Skills",
+        "{crafted}2 Added Passive Skills are Jewel Sockets",
+        "{crafted}Added Small Passive Skills grant: 12% increased Lightning Damage"
+      ],
+      "explicitMods": [
+        "Added Small Passive Skills also grant: +2 to All Attributes",
+        "Added Small Passive Skills also grant: 2% increased Damage",
+        "Added Small Passive Skills also grant: +3 to Intelligence",
+        "1 Added Passive Skill is Prismatic Heart"
+      ],
+      "type": "Jewel",
+      "subType": "Cluster Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Plague Shine",
+      "itemBase": "Large Cluster Jewel",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "c7b4e06f195dc91fc309304f6c6d45ce8848fab2327f683d4449f9dfe144c5fd"
+        },
+        {
+          "name": "Item Level",
+          "values": "62"
+        },
+        {
+          "name": "Implicits",
+          "values": "3"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Adds 8 Passive Skills",
+        "{crafted}2 Added Passive Skills are Jewel Sockets",
+        "{crafted}Added Small Passive Skills grant: 10% increased Attack Damage"
+      ],
+      "explicitMods": [
+        "Added Small Passive Skills also grant: +19 to Armour",
+        "Added Small Passive Skills also grant: Regenerate 0.1% of Life per Second",
+        "Added Small Passive Skills also grant: +2 to Strength",
+        "Added Small Passive Skills have 25% increased Effect"
+      ],
+      "type": "Jewel",
+      "subType": "Cluster Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Phoenix Spark",
+      "itemBase": "Small Cluster Jewel",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "63aefe1360cb058c90e7b91334bca7d9abb2cd2309caf8fdac08d2113ac40ab4"
+        },
+        {
+          "name": "Item Level",
+          "values": "60"
+        },
+        {
+          "name": "LevelReq",
+          "values": "40"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Adds 3 Passive Skills",
+        "{crafted}Added Small Passive Skills grant: 6% increased Mana Reservation Efficiency of Skills"
+      ],
+      "explicitMods": [
+        "Added Small Passive Skills also grant: +3% to Cold Resistance",
+        "Added Small Passive Skills also grant: +5 to Maximum Energy Shield",
+        "Added Small Passive Skills also grant: +2 to Strength",
+        "1 Added Passive Skill is Sublime Form"
+      ],
+      "type": "Jewel",
+      "subType": "Cluster Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Carrion Cut",
+      "itemBase": "Small Cluster Jewel",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "2440f694f694d291bbfbc188264a70a58b81e7835ec7c0dbb38d517003a0bb65"
+        },
+        {
+          "name": "Item Level",
+          "values": "83"
+        },
+        {
+          "name": "LevelReq",
+          "values": "62"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Adds 3 Passive Skills",
+        "{crafted}Added Small Passive Skills grant: 6% increased Mana Reservation Efficiency of Skills"
+      ],
+      "explicitMods": [
+        "Added Small Passive Skills also grant: +2 to All Attributes",
+        "Added Small Passive Skills also grant: +10 to Maximum Energy Shield",
+        "Added Small Passive Skills also grant: +12 to Maximum Life"
+      ],
+      "type": "Jewel",
+      "subType": "Cluster Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Forbidden Flame",
+      "itemBase": "Crimson Jewel",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "ec202ff4060535a62a201943c437408d8dbcbca6baf9b600d9ea5cae2cda727d"
+        },
+        {
+          "name": "Item Level",
+          "values": "85"
+        },
+        {
+          "name": "Requires Class Scion",
+          "values": "True"
+        },
+        {
+          "name": "Implicits",
+          "values": "0"
+        },
+        {
+          "name": "Corrupted",
+          "values": "True"
+        }
+      ],
+      "implicitMods": [],
+      "explicitMods": [
+        "Allocates Guardian if you have the matching modifier on Forbidden Flesh"
+      ],
+      "type": "Jewel",
+      "subType": "Base Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Forbidden Flesh",
+      "itemBase": "Cobalt Jewel",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "998bf895d80905ca06ad2c11927952beb32d9f9813fd894d573f1b1b2dd2eda3"
+        },
+        {
+          "name": "Item Level",
+          "values": "85"
+        },
+        {
+          "name": "Requires Class Scion",
+          "values": "True"
+        },
+        {
+          "name": "Implicits",
+          "values": "0"
+        },
+        {
+          "name": "Corrupted",
+          "values": "True"
+        }
+      ],
+      "implicitMods": [],
+      "explicitMods": [
+        "Allocates Guardian if you have the matching modifier on Forbidden Flame"
+      ],
+      "type": "Jewel",
+      "subType": "Base Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Intuitive Leap",
+      "itemBase": "Viridian Jewel",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "62312e3cd5212360a0044b6e523ada7bb80a45305c19599ae05db2bacc13139e"
+        },
+        {
+          "name": "Item Level",
+          "values": "85"
+        },
+        {
+          "name": "Radius",
+          "values": "Small"
+        },
+        {
+          "name": "Implicits",
+          "values": "0"
+        }
+      ],
+      "implicitMods": [],
+      "explicitMods": [
+        "Passives in Radius can be Allocated without being connected to your tree"
+      ],
+      "type": "Jewel",
+      "subType": "Base Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Phoenix Shine",
+      "itemBase": "Small Cluster Jewel",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "71667b1e843f7de70b2f6ea0fa3afe7dc31224c64a24329551505d30a11a5b21"
+        },
+        {
+          "name": "Item Level",
+          "values": "83"
+        },
+        {
+          "name": "LevelReq",
+          "values": "58"
+        },
+        {
+          "name": "Implicits",
+          "values": "2"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Adds 3 Passive Skills",
+        "{crafted}Added Small Passive Skills grant: 6% increased Mana Reservation Efficiency of Skills"
+      ],
+      "explicitMods": [
+        "Added Small Passive Skills also grant: +3% to Cold Resistance",
+        "Added Small Passive Skills also grant: +13 to Evasion",
+        "Added Small Passive Skills also grant: +8 to Intelligence",
+        "Added Small Passive Skills have 25% increased Effect"
+      ],
+      "type": "Jewel",
+      "subType": "Cluster Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Brood Star",
+      "itemBase": "Large Cluster Jewel",
+      "rarity": "RARE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "08326a503ae05d1da743a246170709e97d569d98f0ff92da7bcc6487c2e2733c"
+        },
+        {
+          "name": "Item Level",
+          "values": "83"
+        },
+        {
+          "name": "LevelReq",
+          "values": "54"
+        },
+        {
+          "name": "Implicits",
+          "values": "3"
+        }
+      ],
+      "implicitMods": [
+        "{crafted}Adds 8 Passive Skills",
+        "{crafted}2 Added Passive Skills are Jewel Sockets",
+        "{crafted}Added Small Passive Skills grant: 12% increased Lightning Damage"
+      ],
+      "explicitMods": [
+        "Added Small Passive Skills also grant: +2 to All Attributes",
+        "Added Small Passive Skills also grant: +4 to Intelligence",
+        "Added Small Passive Skills also grant: +9 to Maximum Energy Shield",
+        "1 Added Passive Skill is Prismatic Heart"
+      ],
+      "type": "Jewel",
+      "subType": "Cluster Jewel",
+      "5/6Link": false
+    },
+    {
+      "name": "Ulaman's Gaze",
+      "itemBase": "Searching Eye Jewel",
+      "rarity": "UNIQUE",
+      "properties": [
+        {
+          "name": "Unique ID",
+          "values": "1a928d751dafa2acee624e224580f0070ef9c6f0d9c8020fb14289a1b3a6cc1e"
+        },
+        {
+          "name": "Item Level",
+          "values": "83"
+        },
+        {
+          "name": "Implicits",
+          "values": "0"
+        }
+      ],
+      "implicitMods": [],
+      "explicitMods": [
+        "+18 to Dexterity",
+        "Projectiles have 4% chance to be able to Chain when colliding with terrain per",
+        "Searching Eye Jewel affecting you, up to a maximum of 20%"
+      ],
+      "type": "Jewel",
+      "subType": "Abysmal Jewel",
+      "5/6Link": false
+    }
+  ],
+  "skills": [
+    {
+      "slot": "Body Armour",
+      "gems": [
+        {
+          "count": "1",
+          "level": 5,
+          "enabled": true,
+          "quality": 20,
+          "qualityId": "Default",
+          "skillId": "SupportAwakenedGenerosity",
+          "variantId": "SupportAwakenedGenerosity",
+          "enableGlobal2": "true",
+          "nameSpec": "Awakened Generosity",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SupportGemGenerosityPlus",
+          "Corrupted": true
+        },
+        {
+          "count": "1",
+          "level": 21,
+          "enabled": true,
+          "quality": 20,
+          "qualityId": "Default",
+          "skillId": "Hatred",
+          "variantId": "Hatred",
+          "enableGlobal2": "true",
+          "nameSpec": "Hatred",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemHatred",
+          "Corrupted": true
+        },
+        {
+          "count": "1",
+          "level": 4,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "SupportEnlighten",
+          "variantId": "SupportEnlighten",
+          "enableGlobal2": "true",
+          "nameSpec": "Enlighten",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SupportGemAdditionalXP",
+          "Corrupted": true
+        },
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "VaalHaste",
+          "variantId": "VaalHaste",
+          "enableGlobal2": "false",
+          "nameSpec": "Vaal Haste",
+          "enableGlobal1": "false",
+          "gemId": "Metadata/Items/Gems/SkillGemVaalHaste",
+          "Corrupted": true
+        },
+        {
+          "count": "1",
+          "level": 21,
+          "enabled": true,
+          "quality": 20,
+          "qualityId": "Default",
+          "skillId": "Wrath",
+          "variantId": "Wrath",
+          "enableGlobal2": "true",
+          "nameSpec": "Wrath",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemWrath",
+          "Corrupted": true
+        },
+        {
+          "count": "1",
+          "level": 21,
+          "enabled": true,
+          "quality": 20,
+          "qualityId": "Default",
+          "skillId": "Anger",
+          "variantId": "Anger",
+          "enableGlobal2": "true",
+          "nameSpec": "Anger",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemAnger",
+          "Corrupted": true
+        }
+      ]
+    },
+    {
+      "slot": "Boots",
+      "gems": [
+        {
+          "count": "1",
+          "level": 1,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "FlameDash",
+          "variantId": "FlameDash",
+          "enableGlobal2": "true",
+          "nameSpec": "Flame Dash",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemFlameDash",
+          "Corrupted": null
+        }
+      ]
+    },
+    {
+      "slot": "Boots",
+      "gems": [
+        {
+          "count": "1",
+          "level": 1,
+          "enabled": true,
+          "quality": 20,
+          "qualityId": "Default",
+          "skillId": "Dash",
+          "variantId": "Dash",
+          "enableGlobal2": "true",
+          "nameSpec": "Dash",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemDash",
+          "Corrupted": null
+        }
+      ]
+    },
+    {
+      "slot": "Boots",
+      "gems": [
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "TemporalRift",
+          "variantId": "TemporalRift",
+          "enableGlobal2": "true",
+          "nameSpec": "Temporal Rift",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemTemporalRift",
+          "Corrupted": null
+        }
+      ]
+    },
+    {
+      "slot": "Weapon 1",
+      "gems": [
+        {
+          "count": "1",
+          "level": 1,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "ShieldCharge",
+          "variantId": "ShieldCharge",
+          "enableGlobal2": "true",
+          "nameSpec": "Shield Charge",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemShieldCharge",
+          "Corrupted": null
+        },
+        {
+          "count": "1",
+          "level": 3,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "SupportMomentum",
+          "variantId": "SupportMomentum",
+          "enableGlobal2": "true",
+          "nameSpec": "Momentum",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SupportGemOnslaught",
+          "Corrupted": null
+        },
+        {
+          "count": "1",
+          "level": 3,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "SupportFasterAttacks",
+          "variantId": "SupportFasterAttacks",
+          "enableGlobal2": "true",
+          "nameSpec": "Faster Attacks",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SupportGemFasterAttack",
+          "Corrupted": null
+        }
+      ]
+    },
+    {
+      "slot": "Helmet",
+      "gems": [
+        {
+          "count": "1",
+          "level": 21,
+          "enabled": true,
+          "quality": 20,
+          "qualityId": "Default",
+          "skillId": "Clarity",
+          "variantId": "Clarity",
+          "enableGlobal2": "true",
+          "nameSpec": "Clarity",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemClarity",
+          "Corrupted": true
+        },
+        {
+          "count": "1",
+          "level": 3,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "SupportEnlighten",
+          "variantId": "SupportEnlighten",
+          "enableGlobal2": "true",
+          "nameSpec": "Enlighten",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SupportGemAdditionalXP",
+          "Corrupted": null
+        },
+        {
+          "count": "1",
+          "level": 21,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "Vitality",
+          "variantId": "Vitality",
+          "enableGlobal2": "true",
+          "nameSpec": "Vitality",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemVitality",
+          "Corrupted": true
+        },
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "Precision",
+          "variantId": "Precision",
+          "enableGlobal2": "true",
+          "nameSpec": "Precision",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemPrecision",
+          "Corrupted": null
+        }
+      ]
+    },
+    {
+      "slot": "Weapon 2",
+      "gems": [
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillMinionSkill": "1",
+          "skillId": "AnimateGuardian",
+          "variantId": "AnimateGuardian",
+          "enableGlobal2": "true",
+          "nameSpec": "Animate Guardian",
+          "skillMinionSkillCalcs": "1",
+          "enableGlobal1": "true",
+          "skillMinion": "AnimatedArmour",
+          "skillMinionItemSet": "1",
+          "gemId": "Metadata/Items/Gems/SkillGemAnimateArmour",
+          "Corrupted": null
+        },
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "SupportMinionLife",
+          "variantId": "SupportMinionLife",
+          "enableGlobal2": "true",
+          "nameSpec": "Minion Life",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SupportGemMinionLife",
+          "Corrupted": null
+        },
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "SupportMeatShield",
+          "variantId": "SupportMeatShield",
+          "enableGlobal2": "true",
+          "nameSpec": "Meat Shield",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SupportGemMeatShield",
+          "Corrupted": null
+        }
+      ]
+    },
+    {
+      "slot": "Gloves",
+      "gems": [
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 20,
+          "qualityId": "Default",
+          "skillId": "VaalDiscipline",
+          "variantId": "VaalDiscipline",
+          "enableGlobal2": "true",
+          "nameSpec": "Vaal Discipline",
+          "enableGlobal1": "false",
+          "gemId": "Metadata/Items/Gems/SkillGemVaalDiscipline",
+          "Corrupted": true
+        },
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "VaalImpurityOfLightning",
+          "variantId": "VaalImpurityOfLightning",
+          "enableGlobal2": "true",
+          "nameSpec": "Vaal Impurity of Lightning",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemVaalLightningResistAura",
+          "Corrupted": true
+        }
+      ]
+    },
+    {
+      "slot": "Gloves",
+      "gems": [
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "VaalImpurityOfFire",
+          "variantId": "VaalImpurityOfFire",
+          "enableGlobal2": "true",
+          "nameSpec": "Vaal Impurity of Fire",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemVaalFireResistAura",
+          "Corrupted": true
+        },
+        {
+          "count": "1",
+          "level": 20,
+          "enabled": true,
+          "quality": 0,
+          "qualityId": "Default",
+          "skillId": "VaalImpurityOfIce",
+          "variantId": "VaalImpurityOfIce",
+          "enableGlobal2": "true",
+          "nameSpec": "Vaal Impurity of Ice",
+          "enableGlobal1": "true",
+          "gemId": "Metadata/Items/Gems/SkillGemVaalColdResistAura",
+          "Corrupted": true
+        }
+      ]
+    }
+  ],
+  "linksBySlot": {
+    "Body Armour": "O-O-O-O-O-O",
+    "Boots": "O O O",
+    "Weapon 1": "O-O-O",
+    "Helmet": "O-O-O-O",
+    "Weapon 2": "O-O-O",
+    "Gloves": "O-O O-O"
+  }
+}
