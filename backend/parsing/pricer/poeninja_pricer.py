@@ -8,8 +8,10 @@ from parsing.decoder.pob_decoder import decode_pob
 # -----------------------
 def fetch_unique_prices(league: str = "Standard") -> dict:
     """
-    Fetch all unique items (chaos equivalent) from poe.ninja.
-    Stores base price and 5/6 link prices if applicable.
+    Fetch unique item prices from poe.ninja for a given league (here Standard).
+    Query several poe.ninja "itemoverview" categories.
+    For "UniqueArmour" and "UniqueWeapon", poe.ninja includes a `links` field
+    on each entry (5 or 6) when that listing refers specifically to a 5L/6L item.
     """
     categories = [
         "UniqueArmour", "UniqueWeapon", "UniqueAccessory",
@@ -28,7 +30,7 @@ def fetch_unique_prices(league: str = "Standard") -> dict:
                 if not name or chaos is None:
                     continue
 
-                # Base price (without considering links)
+                # Always store the base (non-link-specific) price under the plain name
                 prices[name] = chaos
 
                 # If the item is a linkable armour/weapon, store 5/6 link prices
@@ -45,7 +47,10 @@ def fetch_unique_prices(league: str = "Standard") -> dict:
 # Fetch gems
 # -----------------------
 def fetch_gems_with_levels(league: str = "Standard") -> list:
-    """Fetch all gems (including levels and quality) from poe.ninja."""
+    """
+    Fetch all gems (including levels and quality variants) from poe.ninja.
+    """
+
     url = f"https://poe.ninja/api/data/itemoverview?league={league}&type=SkillGem"
     try:
         r = requests.get(url, timeout=10)
@@ -59,7 +64,9 @@ def fetch_gems_with_levels(league: str = "Standard") -> list:
 # Chaos to divine rate
 # -----------------------
 def fetch_chaos_to_divine_rate(league: str = "Standard") -> float:
-    """Fetch the conversion rate from chaos to divine orbs."""
+    """
+    Fetch the conversion rate from chaos to divine orbs.
+    """
     url = f"https://poe.ninja/api/data/currencyoverview?league={league}&type=Currency"
     try:
         r = requests.get(url, timeout=10)
@@ -76,7 +83,9 @@ def fetch_chaos_to_divine_rate(league: str = "Standard") -> float:
 # Helper
 # -----------------------
 def normalize_name(name: str) -> str:
-    """Normalize gem names for comparison (lowercase, remove ' support')."""
+    """
+    Normalize gem names for comparison (lowercase, remove ' support').
+    """
     return name.lower().replace(" support", "").strip()
 
 # -----------------------
@@ -85,7 +94,6 @@ def normalize_name(name: str) -> str:
 def find_gem_price(gem, gems_list, chaos_to_div):
     """
     Attempt to find the price of a gem using fallback logic.
-
     - Tries exact level and quality first.
     - Then tries fallback levels depending on gem type.
     - Fallback qualities: prioritizes original quality, then 23, 20, 0.
@@ -96,7 +104,7 @@ def find_gem_price(gem, gems_list, chaos_to_div):
     gem_quality = int(gem.get("quality", 0))
     name_lower = normalize_name(gem_name)
 
-    # Determine fallback levels
+    # Determine fallback levels by gem type
     if "awakened" in name_lower:
         fallback_levels = [gem_level, 6, 5, 1]
     elif any(x in name_lower for x in ["empower", "enlighten", "enhance"]):
@@ -137,6 +145,7 @@ def find_gem_price(gem, gems_list, chaos_to_div):
                 "fallbackUsed": True
             }
 
+    # If no match found, return None for all prices
     return {"priceChaos": None, "priceDivine": None, "matchedLevel": None, "matchedQuality": None, "fallbackUsed": True}
 
 # -----------------------
@@ -145,7 +154,6 @@ def find_gem_price(gem, gems_list, chaos_to_div):
 def add_prices_to_json(pob_json: dict, league: str = "Standard", debug: bool = False) -> dict:
     """
     Add chaos and divine prices to PoB JSON.
-
     - Fetches unique item prices.
     - Fetches gem prices with level and quality.
     - Updates items and gems with prices and fallback info.
@@ -170,10 +178,13 @@ def add_prices_to_json(pob_json: dict, league: str = "Standard", debug: bool = F
 
         # Lookup price
         if rarity == "UNIQUE":
+            # If the item is linkable, try to find the price for 5L/6L first
             if links in [5, 6]:
                 chaos_price = prices_dict.get(f"{name} ({links}L)")
+            # If no 5L/6L price found, try the base price
             if chaos_price is None:
                 chaos_price = prices_dict.get(name)
+            # If no price found, set to None
             if chaos_price is not None and chaos_to_div:
                 divine_price = round(chaos_price / chaos_to_div, 2)
 

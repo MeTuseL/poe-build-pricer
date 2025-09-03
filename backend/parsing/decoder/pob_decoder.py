@@ -38,8 +38,8 @@ LINK_ELIGIBLE_SUBTYPES = {
 # -------------------
 def get_item_type_and_subtype(item_base: str, mapping: dict):
     """
-    Given an item base, return its generic type and subtype using ITEM_TYPE_MAPPING
-    Example: "Sinner Tricorne" → ("Armour", "Helmet")
+    Given an item base, return its generic type and subtype using ITEM_TYPE_MAPPING.
+    Example: "Sinner Tricorne" → ("Armour", "Helmet").
     """
     if not item_base or not mapping:
         return None, None
@@ -51,8 +51,8 @@ def get_item_type_and_subtype(item_base: str, mapping: dict):
 
 def decode_pob_code(pob_code: str) -> str:
     """
-    Decode a PoB pastebin code back into its raw XML
-    Uses base64 urlsafe and zlib to decode
+    Decode a PoB pastebin code back into its raw XML.
+    Uses base64 urlsafe and zlib to decode.
     """
     pob_code = pob_code.strip()
     missing_padding = len(pob_code) % 4
@@ -67,7 +67,7 @@ def contains_any_in_fields(gem: dict, keywords) -> bool:
       - skillId
       - variantId
       - nameSpec
-    This is used to detect special gems (Awakened, Vaal, Enlighten, etc)
+    This is used to detect special gems (Awakened, Vaal, Enlighten, etc).
     """
     hay = " ".join([
         str(gem.get("skillId", "") or ""),
@@ -81,12 +81,12 @@ def contains_any_in_fields(gem: dict, keywords) -> bool:
 # -------------------
 def resolve_slot_name_for_item(item: dict, links_keys: set, occupied_slots: set):
     """
-    Try to assign an equipment slot to the item
+    Try to assign an equipment slot to the item.
     Handles several cases:
       - Weapons: decide between Weapon 1 / Weapon 2 depending on subtype
       - General case: use subtype or type if it matches available slots
       - Fallback: use SUBTYPE_TO_SLOT mapping
-    Uses occupied_slots to prevent assigning two items to the same slot
+    Uses occupied_slots to prevent assigning two items to the same slot.
     """
     sub = item.get("subType")
     typ = item.get("type")
@@ -140,8 +140,8 @@ def resolve_slot_name_for_item(item: dict, links_keys: set, occupied_slots: set)
 # -------------------
 def parse_items(root) -> list:
     """
-    Extract item data from the PoB XML <Items>
-    Produces a list of JSON-style dicts
+    Extract item data from the PoB XML <Items>.
+    Produces a list of JSON-style dicts.
     """
     items = []
     for item_elem in root.findall(".//Item"):
@@ -212,7 +212,7 @@ def parse_items(root) -> list:
 # -------------------
 def parse_skills(root) -> (list, dict):
     """
-    Extract all skills and linked gems from the PoB XML <Skills>
+    Extract all skills and linked gems from the PoB XML <Skills>.
     Returns:
         - skills: list of skill groups (slot + gem list)
         - links_by_slot: representation of socket links (e.g. "O-O-O" for a 3 link)
@@ -272,8 +272,8 @@ def parse_skills(root) -> (list, dict):
 # -------------------
 def rebuild_sockets(items: list, links_by_slot: dict) -> None:
     """
-    Rewrite the "Sockets" property of items using the actual gem groups from links_by_slot
-    Also computes the maximum link length (5/6Link)
+    Rewrite the "Sockets" property of items using the actual gem groups from links_by_slot.
+    Also computes the maximum link length (5/6Link).
     """
     valid_letters = set("BGRWA")
     links_keys = set(links_by_slot.keys())
