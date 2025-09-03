@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { NavBar } from "../../components/NavBar/NavBar";
-import styles from "./Home.module.css";
+import {NavBar} from "../../components/NavBar/index.jsx";
+import styles from "./styles/Home.module.css"
 
 export function Home() {
   const [pobLink, setPobLink] = useState("");
@@ -93,10 +93,6 @@ export function Home() {
           </p>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        Maquette UI – Path of Exile Build Pricer. Dark theme, accents dorés.
-      </footer>
     </div>
   );
 }

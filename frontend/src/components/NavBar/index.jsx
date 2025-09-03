@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./NavBar.module.css";
+import styles from "./styles/NavBar.module.css";
 
 export function NavBar({ onSettingsClick, onLoginClick }) {
   return (
     <nav className={styles.navbar}>
-      <div className={styles.container}>
+      <div className={`container ${styles.inner}`}>
         {/* Logo */}
         <div className={styles.logo}>PoE Pricer</div>
 

@@ -2,8 +2,8 @@
   @apply bg-neutral-900 text-white px-6 py-4 shadow-md;
 }
 
-.container {
-  @apply container mx-auto flex items-center justify-between;
+.inner {
+    @apply flex items-center justify-between;
 }
 
 .logo {
