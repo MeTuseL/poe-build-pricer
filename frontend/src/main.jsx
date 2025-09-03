@@ -6,6 +6,7 @@ import "./styles/index.css"
 import ErrorPage from "./pages/ErrorPage/index.jsx";
 import BuildsView from "./pages/BuildsView/index.jsx";
 import Layout from "./components/Layout/index.jsx";
+import PricingBuild from "./pages/PricingBuild/index.jsx";
 
 /**
  * Main entry point for the Argent Bank application.
@@ -31,6 +32,10 @@ const router = createBrowserRouter(
                 {
                     path: "builds",
                     element: <BuildsView />,
+                },
+                {
+                    path: "pricing",
+                    element: <PricingBuild />,
                 }
             ],
         },
