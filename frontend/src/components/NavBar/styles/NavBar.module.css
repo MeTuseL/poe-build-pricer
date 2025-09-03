@@ -7,7 +7,7 @@
 }
 
 .logo {
-    @apply flex items-center space-x-2 text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400;
+    @apply flex items-center space-x-2 text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 hover:text-yellow-300 transition;
 }
 
 .logoIcon {
