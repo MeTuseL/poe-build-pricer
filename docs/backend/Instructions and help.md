@@ -1,10 +1,6 @@
-### 1. Doc API
-The doc API is available at the following address after launching the server : 
-````http://localhost:8000/api/docs/````
+### 1. Basic instructions on launching BACKEND server locally :
 
-### 2. Basic instructions on launching BACKEND server locally :
-
-Launch those commands :
+Launch those commands from project root folder :
 - ````cd backend````: Go to backend folder
 - ````python -m venv venv````: Create a virtual environment
 - ````source venv/bin/activate````: Activate the virtual environment
@@ -12,6 +8,10 @@ Launch those commands :
 - ````pip install -r requirements.txt````: Install dependencies
 - ````python manage.py migrate````: Migrate the database from "migrations" files
 - ````python manage.py runserver````: Launch the server
+
+### 2. Doc API
+The doc API is available at the following address after launching the server : 
+````http://localhost:8000/api/docs````
 
 ### 3. Temporary setting for .env to launch PostgreSQL Serveur :
 - Always have PostgreSQL Launched
