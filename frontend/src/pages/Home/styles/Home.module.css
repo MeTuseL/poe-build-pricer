@@ -1,68 +1,60 @@
 .page {
-  @apply flex flex-col min-h-screen bg-neutral-950 text-white;
-}
-
-.main {
-  @apply flex-grow flex flex-col items-center justify-center px-6 py-12;
+    @apply flex flex-col items-center justify-center py-8 sm:py-12 lg:py-20 px-4 sm:px-6;
 }
 
 .heroTitle {
-  @apply text-4xl md:text-5xl font-bold text-yellow-400 mb-4 text-center;
+    @apply text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-400 mb-4 text-center leading-snug;
 }
 
 .heroSubtitle {
-  @apply text-gray-300 mb-10 text-center max-w-xl;
+    @apply text-sm sm:text-base md:text-lg text-gray-300 mb-8 sm:mb-10 text-center max-w-lg md:max-w-xl lg:max-w-2xl;
 }
 
 .block {
-  @apply w-full max-w-xl mb-6 space-y-2;
+    @apply w-full max-w-md sm:max-w-xl mb-6 space-y-2;
 }
 
 .label {
-  @apply block text-sm font-medium text-gray-400;
+    @apply block text-sm sm:text-base font-medium text-gray-400;
 }
 
 .linkHelp {
-  @apply ml-2 text-blue-400 hover:underline text-sm;
+    @apply ml-2 text-blue-400 hover:underline text-xs sm:text-sm;
 }
 
 .inputRow {
-  @apply flex space-x-2;
+    @apply flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0;
 }
 
 .input {
-  @apply flex-grow px-3 py-2 rounded-md bg-neutral-800 border border-neutral-700
-         focus:outline-none focus:ring-2 focus:ring-yellow-400;
+    @apply flex-grow px-3 py-2 rounded-md bg-neutral-800 border border-neutral-700
+    focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm sm:text-base;
 }
 
 .validateButton {
-  @apply px-4 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500;
+    @apply px-4 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 text-sm sm:text-base;
 }
 
 .profileBlock {
-  @apply w-full max-w-xl mb-10 space-y-2;
+    @apply w-full max-w-md sm:max-w-xl mb-10 space-y-2;
 }
 
 .reservedTag {
-  @apply ml-2 text-xs bg-red-800 text-red-200 px-2 py-1 rounded;
+    @apply ml-2 text-[10px] sm:text-xs bg-red-800 text-red-200 px-2 py-1 rounded;
 }
 
 .disabledButton {
-  @apply px-4 py-2 bg-neutral-700 text-gray-400 rounded cursor-not-allowed;
+    @apply px-4 py-2 bg-neutral-700 text-gray-400 rounded cursor-not-allowed text-sm sm:text-base;
 }
 
 .resultBox {
-  @apply w-full max-w-xl bg-neutral-900 border border-neutral-800 rounded-md p-4;
+    @apply w-full max-w-md sm:max-w-xl bg-neutral-900 border border-neutral-800 rounded-md p-4;
 }
 
 .resultTitle {
-  @apply text-lg font-semibold mb-2;
+    @apply text-base sm:text-lg font-semibold mb-2;
 }
 
 .resultText {
-  @apply text-gray-400;
-}
-
-.footer {
-  @apply bg-neutral-900 text-gray-400 py-4 text-center text-sm;
+    @apply text-gray-400 text-sm sm:text-base;
 }

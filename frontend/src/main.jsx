@@ -1,8 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import {Home} from "./pages/Home/index.jsx";
+import Home from "./pages/Home/index.jsx";
 import "./styles/index.css"
+import ErrorPage from "./pages/ErrorPage/index.jsx";
+import BuildsView from "./pages/BuildsView/index.jsx";
+import Layout from "./components/Layout/index.jsx";
+
 /**
  * Main entry point for the Argent Bank application.
  *
@@ -17,18 +21,22 @@ const router = createBrowserRouter(
     [
         {
             path: '/',
-            element: <Home />,
-            /*errorElement: <ErrorPage />, */
+            element: <Layout />,
+            errorElement: <ErrorPage />,
             children: [
                 {
                     index: true,
                     element: <Home />,
                 },
+                {
+                    path: "builds",
+                    element: <BuildsView />,
+                }
             ],
         },
     ],
     {
-        basename: '/',
+        basename: '/poe-pricer-tools',
     }
 )
 // Render the application with Redux Provider and Router Provider
