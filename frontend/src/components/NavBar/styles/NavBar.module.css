@@ -1,29 +1,44 @@
+/* Base clair */
 .navbar {
-    @apply bg-neutral-900 text-white px-4 sm:px-6 py-4 shadow-md;
+    @apply sticky top-0 z-40 backdrop-blur
+    bg-white/90 text-neutral-900
+    px-4 sm:px-6 py-4 border-b border-neutral-200;
+}
+/* Dark */
+:global(.dark) .navbar {
+    @apply bg-neutral-900/95 text-white border-neutral-800;
 }
 
-.inner {
-    @apply w-full max-w-screen-xl mx-auto flex items-center justify-between;
-}
+.inner { @apply w-full max-w-screen-xl mx-auto flex items-center justify-between; }
 
 .logo {
-    @apply flex items-center space-x-2 text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 hover:text-yellow-300 transition;
+    @apply flex items-center space-x-2 text-lg sm:text-xl lg:text-2xl font-bold
+    text-yellow-600 hover:text-yellow-500 transition;
 }
+:global(.dark) .logo { @apply text-yellow-400 hover:text-yellow-300; }
 
-.logoIcon {
-    @apply w-6 h-6 sm:w-8 sm:h-8 object-contain;
-}
-
-.actions {
-    @apply flex space-x-2 sm:space-x-4;
-}
+.logoIcon { @apply w-6 h-6 sm:w-8 sm:h-8 object-contain; }
+.actions { @apply flex space-x-2 sm:space-x-4; }
 
 .settingsButton {
-    @apply hidden sm:flex items-center px-3 sm:px-4 py-2 border border-yellow-400 rounded-full text-yellow-400
-    hover:bg-yellow-400 hover:text-neutral-900 transition text-sm sm:text-base;
+    /* Base clair */
+    @apply hidden sm:flex items-center px-3 sm:px-4 py-2 rounded-full
+    border border-yellow-500 text-yellow-700
+    hover:bg-yellow-400 hover:text-neutral-900 transition
+    text-sm sm:text-base;
+}
+/* Dark */
+:global(.dark) .settingsButton {
+    @apply border-yellow-400 text-yellow-400;
 }
 
 .loginButton {
-    @apply px-3 sm:px-4 py-2 border border-neutral-600 rounded-full text-white
-    hover:bg-neutral-800 transition text-sm sm:text-base;
+    /* Base clair */
+    @apply px-3 sm:px-4 py-2 rounded-full border
+    border-neutral-300 text-neutral-900 hover:bg-neutral-100
+    transition text-sm sm:text-base;
+}
+/* Dark */
+:global(.dark) .loginButton {
+    @apply border-neutral-600 text-white hover:bg-neutral-800;
 }

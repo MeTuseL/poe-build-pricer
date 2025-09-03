@@ -1,19 +1,32 @@
 .page {
-    @apply flex flex-col items-center justify-start min-h-screen bg-neutral-950 text-white px-4 sm:px-6 py-8 sm:py-12;
+    @apply flex flex-col items-center justify-start min-h-screen
+    px-4 sm:px-6 py-8 sm:py-12
+    bg-white text-neutral-900;
 }
+:global(.dark) .page { @apply bg-neutral-950 text-white; }
 
 .title {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 mb-6 text-center;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold
+    text-yellow-600 mb-6 text-center;
 }
+:global(.dark) .title { @apply text-yellow-400; }
+
+.noData { @apply text-neutral-700; }
+:global(.dark) .noData { @apply text-neutral-300; }
 
 .content {
-    @apply w-full max-w-3xl bg-neutral-900 border border-neutral-800 rounded-lg shadow p-4 sm:p-6;
+    @apply w-full max-w-3xl bg-neutral-50 border border-neutral-200
+    rounded-lg shadow p-4 sm:p-6;
 }
+:global(.dark) .content { @apply bg-neutral-900 border-neutral-800; }
 
 .jsonBox {
-    @apply bg-neutral-950 border border-neutral-800 rounded-md p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm text-gray-300 font-mono;
+    @apply bg-white border border-neutral-200 text-neutral-800
+    rounded-md p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm font-mono;
 }
+:global(.dark) .jsonBox { @apply bg-neutral-950 border-neutral-800 text-gray-300; }
 
 .backLink {
-    @apply mt-6 inline-block text-yellow-400 hover:text-yellow-300 transition text-sm sm:text-base;
+    @apply mt-6 inline-block text-yellow-600 hover:text-yellow-700 transition text-sm sm:text-base;
 }
+:global(.dark) .backLink { @apply text-yellow-400 hover:text-yellow-300; }

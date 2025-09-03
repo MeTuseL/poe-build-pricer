@@ -1,11 +1,7 @@
-.layout {
-    @apply flex flex-col min-h-screen bg-neutral-950 text-white;
-}
+/* Base clair */
+.layout { @apply flex flex-col min-h-screen bg-white text-neutral-900; }
+/* Dark */
+:global(.dark) .layout { @apply bg-neutral-950 text-white; }
 
-.container {
-    @apply w-full max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col flex-grow;
-}
-
-.main {
-    @apply flex-grow;
-}
+.container { @apply w-full max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col flex-grow; }
+.main { @apply flex-grow py-6 sm:py-8; }

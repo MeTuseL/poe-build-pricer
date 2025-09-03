@@ -1,21 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+
 import NavBar from "../NavBar";
 import Footer from "../Footer";
+import SettingsModal from "../SettingsModal"; // ⬅️ ouvert par le bouton "Paramètres"
+
 import styles from "./styles/Layout.module.css";
-import { Outlet } from 'react-router-dom'
 
 export function Layout() {
+    const [openSettings, setOpenSettings] = useState(false);
+
     return (
         <div className={styles.layout}>
             <NavBar
-                onSettingsClick={() => alert("Ouvrir paramètres")}
-                onLoginClick={() => alert("Connexion")}
+                onSettingsClick={() => setOpenSettings(true)}
+                onLoginClick={() => console.log("Connexion")}
             />
+
             <div className={styles.container}>
-                <main className={styles.main}><Outlet /></main>
-                <Footer />
+                <main className={styles.main}>
+                    <Outlet />
+                </main>
             </div>
+
+            <Footer />
+
+            <SettingsModal
+                open={openSettings}
+                onClose={() => setOpenSettings(false)}
+            />
         </div>
     );
 }
-export default Layout
+export default Layout;

@@ -2,26 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+html { font-size: var(--poe-font, 16px); }
+html, body, #root { height: 100%; }
 
-}
-
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-a {
-    text-decoration: none;
-}
-
-li {
-    list-style-type: none;
-}
-
-main {
-    min-height: 100vh;
-}
-
+body { @apply bg-white text-neutral-900 dark:bg-neutral-950 dark:text-white; }

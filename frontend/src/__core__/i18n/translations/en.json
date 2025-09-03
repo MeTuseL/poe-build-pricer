@@ -1,0 +1,57 @@
+{
+  "navbar": {
+    "settings": "Settings",
+    "login": "Sign in"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "themeDesc": "Choose the site appearance.",
+    "system": "System",
+    "dark": "Dark",
+    "light": "Light",
+    "textSize": "Text size",
+    "textSizeDesc": "Reading comfort.",
+    "small": "Small",
+    "normal": "Normal",
+    "large": "Large",
+    "anim": "UI animations",
+    "animDesc": "Micro-interactions.",
+    "lang": "Language",
+    "langDesc": "Interface",
+    "french": "French",
+    "english": "English",
+    "close": "Close"
+  },
+  "home": {
+    "title": "PoE Pricer Tools",
+    "subtitle": "Estimate the total cost of a Path of Exile build from a PoB link. Sign in to access settings and save builds.",
+    "pobLabel": "PoB Code",
+    "pobHelp": "How to get a PoB link?",
+    "inputPlaceholder": "https://pastebin.com/...",
+    "validate": "Validate",
+    "loading": "Loading...",
+    "import": "Import Profile",
+    "reserved": "Reserved for logged-in users",
+    "errorInvalidLink": "Please enter a valid PoB link.",
+    "errorLoading": "Unable to load data. Please verify the link."
+  },
+  "pricing": {
+    "title": "Build results",
+    "noData": "No data received. Go back to home.",
+    "back": "← Back to home"
+  },
+  "status": {
+    "title": "Oops, something went wrong",
+    "subtitle": "The page you’re looking for can’t be found or an internal error occurred.",
+    "details": "Technical detail",
+    "backHome": "← Back to home",
+    "notFoundMessage": "Page not found"
+  },
+  "errorPage": {
+    "title": "Oops, something went wrong",
+    "subtitle": "The page you’re looking for can’t be found or an internal error occurred.",
+    "details": "Technical detail",
+    "backHome": "← Back to home"
+  }
+}
