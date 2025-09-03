@@ -1,0 +1,30 @@
+.gridLayout { @apply grid grid-cols-1 md:grid-cols-2 gap-3; }
+
+.select {
+    @apply bg-white border border-neutral-300 text-neutral-900 rounded-lg px-3 py-2;
+}
+/* Surcharge dark */
+:global(.dark) .select {
+    @apply bg-neutral-900 border-neutral-700 text-white;
+}
+
+.switch { @apply relative inline-flex items-center; }
+.switch input { display: none; }
+
+.switch span {
+    @apply w-11 h-6 rounded-full bg-neutral-300 transition-colors relative inline-block;
+}
+:global(.dark) .switch span { @apply bg-neutral-700; }
+
+.switch span::after {
+    content: "";
+    @apply absolute top-[3px] left-[3px] w-5 h-5 rounded-full bg-white shadow;
+    transition: transform .2s ease;
+}
+:global(.dark) .switch span::after { @apply bg-neutral-900; }
+
+.switch input:checked + span { @apply bg-yellow-400; }
+.switch input:checked + span::after { transform: translateX(20px); }
+
+.footer { @apply mt-4 flex justify-end; }
+.primary { @apply px-4 py-2 rounded-md font-semibold bg-yellow-400 text-black hover:bg-yellow-500; }
