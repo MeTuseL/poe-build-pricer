@@ -2,13 +2,13 @@
 Project to create a web application to price full build from Path of Exile.
 
 ## SUMMARYS
-1. [Contexte](#1-Contexte)
+1. [Context](#1-Context)
 2. [Current state of the project](#2-Current-state-of-the-project)
 3. [Future of the project](#3-Future-of-the-project)
 4. [Documentation](#4-Documentation)
 5. [Credits](#5-Credits)
 
-## 1. Contexte
+## 1. Context
 This project is born out of the idea that pricing a full build could be useful to PoE players, taking into account all items buyable in the build and totaling the price automatically.
 
 With this idea, the proposed format of application would be a web application that would permit the core features :
@@ -22,7 +22,7 @@ With this idea, the proposed format of application would be a web application th
 
 ## 2. Current state of the project
 ### What is done
-Currently, the project only has a fonctional demo, work by launching a first local server from the python/django backend/ folder and a second local server from the React frontend/ folder
+Currently, the project only has a functional demo, work by launching a first local server from the python/django backend/ folder and a second local server from the React frontend/ folder
 
 Features currently implemented :
 1. A webpage to input a PoB code
@@ -32,7 +32,11 @@ Features currently implemented :
 5. Graphically displaying items and their price in the webpage 
 
 ### What it currently looks like
-todo
+The main page, allows you to load a build with a Pob code (other functionalities shown here are not currently fully implemented):
+![preview1](docs/preview/preview1.webp)
+
+The page that display the build :
+![preview2](docs/preview/preview2.webp)
 
 ### Current limitation
 - Visually laking, not at the level of other displaying build apps from the community.
