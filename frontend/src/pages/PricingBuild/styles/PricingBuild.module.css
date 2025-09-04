@@ -1,19 +1,129 @@
 .page {
-    @apply flex flex-col items-center justify-start min-h-screen bg-neutral-950 text-white px-4 sm:px-6 py-8 sm:py-12;
+    @apply px-4 sm:px-6 py-6 sm:py-10 min-h-screen overflow-x-auto;
 }
 
-.title {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 mb-6 text-center;
+/* En-tête */
+.headerRow { @apply flex items-center justify-between gap-3 mb-6; }
+.title { @apply text-2xl sm:text-3xl font-bold text-yellow-600; }
+:global(.dark) .title { @apply text-yellow-400; }
+
+/* Grille principale */
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1.25rem;
+    width: 100%;
+}
+@media (max-width: 1280px) {
+    .grid { grid-template-columns: 1fr; }
 }
 
-.content {
-    @apply w-full max-w-3xl bg-neutral-900 border border-neutral-800 rounded-lg shadow p-4 sm:p-6;
+.sideCol { @apply flex flex-col gap-4; }
+
+/* Cartes */
+.card { @apply rounded-2xl p-4 border bg-neutral-50 border-neutral-200 h-fit; }
+:global(.dark) .card { @apply bg-neutral-900 border-neutral-800; }
+
+.cardTall { min-height: 28rem; }
+
+.cardTitle { @apply text-lg font-semibold mb-2 text-neutral-900; }
+:global(.dark) .cardTitle { @apply text-white; }
+
+/* Lignes d’items */
+.itemRow { @apply flex items-center gap-3 p-2 rounded-lg; }
+
+.icon { @apply inline-flex text-yellow-600; }
+:global(.dark) .icon { @apply text-yellow-400; }
+
+/* Titre + rareté empilés */
+.itemMain { @apply flex-1 min-w-0 flex flex-col; }
+
+.itemName {
+    @apply font-medium leading-tight truncate cursor-pointer hover:underline decoration-dotted;
 }
 
-.jsonBox {
-    @apply bg-neutral-950 border border-neutral-800 rounded-md p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm text-gray-300 font-mono;
+/* Meta gemmes */
+.gemMeta { @apply text-xs text-neutral-600; }
+:global(.dark) .gemMeta { @apply text-neutral-400; }
+
+.badge { @apply mt-1 self-start inline-flex items-center px-2 py-0.5 rounded-full text-xs; }
+
+.rar_unique { @apply bg-orange-100 text-orange-800; }
+:global(.dark) .rar_unique { @apply bg-orange-900/40 text-orange-300; }
+
+.rar_rare { @apply bg-yellow-100 text-yellow-800; }
+:global(.dark) .rar_rare { @apply bg-yellow-900/40 text-yellow-300; }
+
+.saveBtnDisabled {
+    @apply mt-4 w-full px-3 py-2 rounded-md font-semibold
+    cursor-not-allowed
+    bg-neutral-200 text-neutral-500 border border-neutral-300;
+}
+:global(.dark) .saveBtnDisabled {
+    @apply bg-neutral-800 text-neutral-400 border-neutral-700;
 }
 
-.backLink {
-    @apply mt-6 inline-block text-yellow-400 hover:text-yellow-300 transition text-sm sm:text-base;
+.rar_magic { @apply bg-blue-100 text-blue-800; }
+:global(.dark) .rar_magic { @apply bg-blue-900/40 text-blue-300; }
+
+/* Prix */
+.priceBox { @apply relative flex items-center gap-1; }
+
+.priceInput {
+    @apply w-28 px-2 py-1 rounded-md bg-white border border-neutral-300 text-right;
 }
+:global(.dark) .priceInput { @apply bg-neutral-950 border-neutral-700 text-white; }
+
+/* Erreur quand prix = N/A */
+.priceInputError { @apply border-red-500 ring-1 ring-red-500/50; }
+
+/* Icône monnaie */
+.currencyIcon { @apply h-4 w-4 inline-block align-middle; }
+
+/* Groupes par slot (gems) */
+.slotBlock { @apply mt-2; }
+.slotTitle { @apply text-sm font-semibold mb-1 text-neutral-700; }
+:global(.dark) .slotTitle { @apply text-neutral-300; }
+
+/* Carte total */
+.totalCard { @apply rounded-2xl p-4 border bg-neutral-50 border-neutral-200 text-center; }
+:global(.dark) .totalCard { @apply bg-neutral-900 border-neutral-800; }
+
+/* Titre “Total” plus visible */
+.totalLabel { @apply text-base sm:text-lg font-bold text-neutral-700; }
+:global(.dark) .totalLabel { @apply text-neutral-300; }
+
+/* Valeur totale */
+.totalValue {
+    @apply text-4xl font-extrabold text-yellow-600 mt-1 flex items-center justify-center gap-2;
+}
+:global(.dark) .totalValue { @apply text-yellow-400; }
+
+/* Détail des sous-totaux */
+.totalBreak { @apply mt-2 text-xs text-neutral-600; }
+:global(.dark) .totalBreak { @apply text-neutral-400; }
+
+/* Bouton “Save” en bas */
+.saveBtnBottom {
+    @apply mt-4 w-full px-3 py-2 rounded-md font-semibold bg-yellow-500 hover:bg-yellow-600 text-black;
+}
+:global(.dark) .saveBtnBottom { @apply bg-yellow-400 hover:bg-yellow-500; }
+
+/* Divers */
+.noData { @apply text-neutral-700; }
+:global(.dark) .noData { @apply text-neutral-300; }
+
+.backLink { @apply mt-6 inline-block text-yellow-600 hover:text-yellow-700 transition; }
+:global(.dark) .backLink { @apply text-yellow-400 hover:text-yellow-300; }
+.backBtn {
+    @apply inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full font-medium
+    border transition shadow;
+    @apply bg-white/80 text-neutral-900 border-neutral-300 hover:bg-white;
+}
+:global(.dark) .backBtn {
+    @apply bg-neutral-900/80 text-white border-neutral-700 hover:bg-neutral-800;
+}
+
+.backBtnIcon { @apply w-4 h-4; }
+.backTop { @apply flex items-center; }
+.backBottom { @apply mt-8 flex justify-center; }

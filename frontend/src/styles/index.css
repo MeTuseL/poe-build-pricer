@@ -2,26 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+html { font-size: var(--poe-font, 16px); }
+html, body, #root { height: 100%; }
+
+/* --- Fond global (image + voile) --- */
 :root {
-
+    --app-bg-overlay: rgba(0, 0, 0, 0.32);
 }
 
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+body {
+    @apply text-neutral-900;
+    background:
+            linear-gradient(0deg, var(--app-bg-overlay), var(--app-bg-overlay)),
+            url("../assets/img/poe-bg.png") center / cover fixed no-repeat;
 }
 
-a {
-    text-decoration: none;
+.dark body {
+    --app-bg-overlay: rgba(0, 0, 0, 0.65);
+    @apply text-white;
 }
-
-li {
-    list-style-type: none;
-}
-
-main {
-    min-height: 100vh;
-}
-

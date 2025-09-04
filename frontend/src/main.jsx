@@ -1,52 +1,41 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import Home from "./pages/Home/index.jsx";
-import "./styles/index.css"
-import ErrorPage from "./pages/ErrorPage/index.jsx";
+import "./styles/index.css";
 import BuildsView from "./pages/BuildsView/index.jsx";
 import Layout from "./components/Layout/index.jsx";
 import PricingBuild from "./pages/PricingBuild/index.jsx";
 
-/**
- * Main entry point for the Argent Bank application.
- *
- * This script sets up the application's routing and state management
- * using React Router and Redux.
- *
- * @category Router
- */
+import AppProviders from "./__core__/providers/AppProviders.jsx";
+import StatusPage from "./pages/StatusPage/index.jsx";
+import ErrorLayout from "./components/ErrorLayout/index.jsx";
 
-// Create the application's routing configuration
+// Routing configuration
 const router = createBrowserRouter(
     [
         {
             path: '/',
             element: <Layout />,
-            errorElement: <ErrorPage />,
+            errorElement: <ErrorLayout />,
             children: [
-                {
-                    index: true,
-                    element: <Home />,
-                },
-                {
-                    path: "builds",
-                    element: <BuildsView />,
-                },
-                {
-                    path: "pricing",
-                    element: <PricingBuild />,
-                }
+                { index: true, element: <Home /> },
+                { path: 'builds', element: <BuildsView /> },
+                { path: 'pricing', element: <PricingBuild /> },
+                { path: '*', element: <StatusPage /> },
             ],
         },
     ],
     {
         basename: '/poe-pricer-tools',
     }
-)
-// Render the application with Redux Provider and Router Provider
+);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
+        <AppProviders>
             <RouterProvider router={router} />
+        </AppProviders>
     </React.StrictMode>
-)
+);

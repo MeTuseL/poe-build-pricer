@@ -1,32 +1,32 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/Home.module.css";
-import {pricePoB} from "../../__services__/api-service.js";
+import { pricePoB } from "../../__services__/api-service.js";
+import { useI18n } from "../../__core__";
+import ErrorMsg from "../../components/ErrorMsg";
 
-export function Home() {
+export default function Home() {
+    const { t } = useI18n();
     const [pobLink, setPobLink] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null); // erreurs du bloc PoB
     const navigate = useNavigate();
 
+    // TODO: remplacera plus tard par ton vrai état d'auth
+    const isAuthenticated = false;
 
     const handleValidatePoB = async () => {
         if (!pobLink.trim()) {
-            setError("Veuillez entrer un lien PoB valide.");
+            setError(t("home.errorInvalidLink"));
             return;
         }
-
         try {
             setError(null);
             setLoading(true);
-
-            // Call Django API
             const data = await pricePoB(pobLink);
-
-            // Redirect to PricingBuild with data
             navigate("/pricing", { state: { pobData: data } });
-        } catch (err) {
-            setError("Impossible de charger les données. Vérifiez le lien.");
+        } catch {
+            setError(t("home.errorLoading"));
         } finally {
             setLoading(false);
         }
@@ -34,66 +34,69 @@ export function Home() {
 
     return (
         <div className={styles.page}>
-            <h1 className={styles.heroTitle}>PoE Pricer Tools</h1>
-            <p className={styles.heroSubtitle}>
-                Estime le coût total d’un build Path of Exile à partir d’un lien PoB.
-                Connecte-toi pour accéder aux paramètres et sauvegarder des builds.
-            </p>
+            <h1 className={styles.heroTitle}>{t("home.title")}</h1>
+            <p className={styles.heroSubtitle}>{t("home.subtitle")}</p>
 
             {/* Bloc PoB */}
             <div className={styles.block}>
                 <label className={styles.label}>
-                    Code PoB
+                    {t("home.pobLabel")}
                     <a href="#" className={styles.linkHelp}>
-                        Comment obtenir un lien PoB ?
+                        {t("home.pobHelp")}
                     </a>
                 </label>
+
                 <div className={styles.inputRow}>
                     <input
                         type="text"
-                        placeholder="https://pastebin.com/..."
+                        placeholder={t("home.inputPlaceholder")}
                         value={pobLink}
                         onChange={(e) => setPobLink(e.target.value)}
                         className={styles.input}
+                        disabled={loading}
+                        aria-disabled={loading}
                     />
                     <button
                         onClick={handleValidatePoB}
                         className={styles.validateButton}
                         disabled={loading}
+                        type="button"
                     >
-                        {loading ? "Chargement..." : "Valider"}
+                        {loading ? t("home.loading") : t("home.validate")}
                     </button>
                 </div>
+
+                {error && <ErrorMsg message={error} />}
             </div>
 
-            {/* Bloc Profil */}
+            {/* Bloc Import profil — désactivé si non connecté */}
             <div className={styles.profileBlock}>
                 <label className={styles.label}>
-                    Import Profil
-                    <span className={styles.reservedTag}>
-            Réservé aux utilisateurs connectés
-          </span>
+                    {t("home.import")}
                 </label>
+
                 <div className={styles.inputRow}>
                     <input
                         type="text"
-                        placeholder="https://pastebin.com/..."
-                        value={pobLink}
-                        onChange={(e) => setPobLink(e.target.value)}
-                        className={styles.input}
+                        placeholder={t("home.inputPlaceholder")}
+                        className={`${styles.input} ${!isAuthenticated ? styles.inputDisabled : ""}`}
+                        disabled={!isAuthenticated}
+                        aria-disabled={!isAuthenticated}
+                        title={!isAuthenticated ? t("home.reserved") : undefined}
                     />
                     <button
-                        onClick={handleValidatePoB}
-                        className={styles.validateButton}
-                        disabled={loading}
+                        className={`${!isAuthenticated ? styles.disabledButton : styles.validateButton}`}
+                        disabled={!isAuthenticated}
+                        aria-disabled={!isAuthenticated}
+                        title={!isAuthenticated ? t("home.reserved") : undefined}
+                        type="button"
                     >
-                        {loading ? "Chargement..." : "Valider"}
+                        {t("home.validate")}
                     </button>
                 </div>
 
-                {error && <p className="text-red-500 mt-2">{error}</p>}
+                {!isAuthenticated && <ErrorMsg message={t("home.reserved")} />}
             </div>
         </div>
     );
 }
-export default Home

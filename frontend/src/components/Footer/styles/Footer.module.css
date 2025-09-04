@@ -1,3 +1,16 @@
 .footer {
-    @apply bg-neutral-900 text-gray-400 py-4 text-center text-sm;
+    @apply w-full mt-10 px-4 sm:px-6 py-6 text-sm
+    bg-black/60 backdrop-blur-md
+    border-t border-white/10
+    shadow-[0_-6px_12px_-8px_rgba(0,0,0,0.35)]
+    flex items-center justify-center;
+    @apply text-yellow-400;
 }
+
+.inner { @apply w-full max-w-screen-xl text-center; }
+
+.copy { @apply leading-none; }
+
+.brand { @apply font-semibold; }
+
+.footer a { @apply text-yellow-300 hover:text-yellow-200 underline; }

@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/app_icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PoE Pricer Tools</title>
+      <script>
+          (function () {
+              try {
+                  var KEY = 'poe:theme';
+                  var t = localStorage.getItem(KEY) || 'dark'; // défaut = DARK
+                  function apply(th) {
+                      var d = document.documentElement;
+                      if (th === 'system') {
+                          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                          d.classList.toggle('dark', !prefersLight);
+                      } else {
+                          d.classList.toggle('dark', th === 'dark');
+                      }
+                  }
+                  apply(t);
+              } catch (e) {}
+          })();
+      </script>
+
+      <title>PoE Pricer Tools</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
+
 </html>

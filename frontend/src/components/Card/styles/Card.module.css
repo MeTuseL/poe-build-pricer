@@ -1,0 +1,12 @@
+.card { @apply bg-neutral-100 border border-neutral-200 rounded-2xl p-4; }
+:global(.dark) .card { @apply bg-neutral-800 border-neutral-700; }
+
+.row { @apply flex items-center justify-between gap-3; }
+.title { @apply font-semibold text-neutral-900; }
+:global(.dark) .title { @apply text-white; }
+
+.desc { @apply text-sm text-neutral-600 mt-0.5; }
+:global(.dark) .desc { @apply text-neutral-400; }
+
+.right { @apply flex items-center gap-2; }
+.body { @apply mt-3; }

@@ -1,0 +1,45 @@
+.wrapper {
+    @apply min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center
+    px-4 py-10 bg-white text-neutral-900;
+}
+/* Dark */
+:global(.dark) .wrapper { @apply bg-neutral-950 text-white; }
+
+/* Card */
+.card {
+    @apply w-full max-w-xl bg-neutral-50 border border-neutral-200
+    rounded-2xl p-6 sm:p-8 shadow;
+}
+:global(.dark) .card { @apply bg-neutral-900 border-neutral-800; }
+
+/* Icon + title + subtitle */
+.icon { @apply text-4xl mb-3; }
+
+.title { @apply text-2xl sm:text-3xl font-bold text-yellow-600; }
+:global(.dark) .title { @apply text-yellow-400; }
+
+.subtitle { @apply mt-2 text-neutral-700; }
+:global(.dark) .subtitle { @apply text-neutral-300; }
+
+/* Detail box */
+.detailBox {
+    @apply mt-5 rounded-xl p-4 bg-white border border-neutral-200;
+}
+:global(.dark) .detailBox { @apply bg-neutral-950 border-neutral-800; }
+
+.detailTitle { @apply text-sm font-semibold mb-2 text-neutral-600; }
+:global(.dark) .detailTitle { @apply text-neutral-400; }
+
+.detailContent { @apply flex items-center gap-2 text-sm sm:text-base; }
+
+.badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full
+    bg-yellow-100 text-yellow-800;
+}
+:global(.dark) .badge { @apply bg-yellow-900/40 text-yellow-300; }
+
+/* Link back */
+.back {
+    @apply mt-6 inline-block text-yellow-600 hover:text-yellow-700 transition font-medium;
+}
+:global(.dark) .back { @apply text-yellow-400 hover:text-yellow-300; }

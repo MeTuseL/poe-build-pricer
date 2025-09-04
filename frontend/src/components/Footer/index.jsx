@@ -1,10 +1,15 @@
+import React from "react";
 import styles from "./styles/Footer.module.css";
 
-export function Footer() {
+export default function Footer() {
+    const year = new Date().getFullYear();
     return (
         <footer className={styles.footer}>
-            © {new Date().getFullYear()} PoE Pricer — Tous droits réservés.
+            <div className={styles.inner}>
+                <p className={styles.copy}>
+                    © {year} <span className={styles.brand}>PoE Pricer</span> — Tous droits réservés.
+                </p>
+            </div>
         </footer>
     );
 }
-export default Footer
