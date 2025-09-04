@@ -1,0 +1,7 @@
+.wrap { @apply fixed inset-0 grid place-items-center z-50 bg-black/40; }
+
+.spinner {
+    @apply h-12 w-12 rounded-full border-4 border-yellow-400 border-t-transparent animate-spin;
+}
+
+.text { @apply mt-3 text-sm font-medium text-white; }

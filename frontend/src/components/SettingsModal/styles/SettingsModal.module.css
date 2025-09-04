@@ -28,3 +28,4 @@
 
 .footer { @apply mt-4 flex justify-end; }
 .primary { @apply px-4 py-2 rounded-md font-semibold bg-yellow-400 text-black hover:bg-yellow-500; }
+.noticeWrap { @apply mt-3; }

@@ -2,11 +2,15 @@ import React from "react";
 import Modal from "../Modal";
 import Card from "../Card";
 import styles from "./styles/SettingsModal.module.css";
-import { useTheme, useI18n } from "../../__core__"
+import { useTheme, useI18n } from "../../__core__";
+import ErrorMsg from "../ErrorMsg";
 
 export default function SettingsModal({ open, onClose }) {
     const { theme, setTheme, systemPref } = useTheme();
     const { lang, setLang, t } = useI18n();
+
+    // TODO: brancher sur ton vrai état d'auth plus tard
+    const isAuthenticated = false;
 
     return (
         <Modal isOpen={open} onClose={onClose} title={t("settings.title")}>
@@ -21,7 +25,9 @@ export default function SettingsModal({ open, onClose }) {
                             className={styles.select}
                             aria-label={t("settings.theme")}
                         >
-                            <option value="system">{t("settings.system")} ({systemPref})</option>
+                            <option value="system">
+                                {t("settings.system")} ({systemPref})
+                            </option>
                             <option value="dark">{t("settings.dark")}</option>
                             <option value="light">{t("settings.light")}</option>
                         </select>
@@ -55,7 +61,9 @@ export default function SettingsModal({ open, onClose }) {
                             <input
                                 type="checkbox"
                                 defaultChecked={localStorage.getItem("poe:anim") !== "off"}
-                                onChange={(e) => localStorage.setItem("poe:anim", e.target.checked ? "on" : "off")}
+                                onChange={(e) =>
+                                    localStorage.setItem("poe:anim", e.target.checked ? "on" : "off")
+                                }
                             />
                             <span />
                         </label>
@@ -79,8 +87,17 @@ export default function SettingsModal({ open, onClose }) {
                 />
             </div>
 
+            {/* Message d’info si l’utilisateur n’est pas connecté */}
+            {!isAuthenticated && (
+                <div className={styles.noticeWrap}>
+                    <ErrorMsg message={t("settings.signinToSave")} />
+                </div>
+            )}
+
             <div className={styles.footer}>
-                <button className={styles.primary} onClick={onClose}>{t("settings.close")}</button>
+                <button className={styles.primary} onClick={onClose}>
+                    {t("settings.close")}
+                </button>
             </div>
         </Modal>
     );
