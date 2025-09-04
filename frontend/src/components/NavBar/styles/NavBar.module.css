@@ -1,44 +1,30 @@
-/* Base clair */
 .navbar {
-    @apply sticky top-0 z-40 backdrop-blur
-    bg-white/90 text-neutral-900
-    px-4 sm:px-6 py-4 border-b border-neutral-200;
-}
-/* Dark */
-:global(.dark) .navbar {
-    @apply bg-neutral-900/95 text-white border-neutral-800;
+    @apply sticky top-0 z-40 px-4 sm:px-6 py-3
+    bg-black/60 backdrop-blur-md text-white
+    border-b border-white/10 shadow-lg;
 }
 
 .inner { @apply w-full max-w-screen-xl mx-auto flex items-center justify-between; }
 
 .logo {
     @apply flex items-center space-x-2 text-lg sm:text-xl lg:text-2xl font-bold
-    text-yellow-600 hover:text-yellow-500 transition;
+    text-yellow-400 hover:text-yellow-300 transition;
 }
-:global(.dark) .logo { @apply text-yellow-400 hover:text-yellow-300; }
-
 .logoIcon { @apply w-6 h-6 sm:w-8 sm:h-8 object-contain; }
+
 .actions { @apply flex space-x-2 sm:space-x-4; }
 
+.btnIcon { @apply w-4 h-4 flex-shrink-0; }
 .settingsButton {
-    /* Base clair */
-    @apply hidden sm:flex items-center px-3 sm:px-4 py-2 rounded-full
-    border border-yellow-500 text-yellow-700
-    hover:bg-yellow-400 hover:text-neutral-900 transition
-    text-sm sm:text-base;
-}
-/* Dark */
-:global(.dark) .settingsButton {
-    @apply border-yellow-400 text-yellow-400;
+    @apply hidden sm:inline-flex items-center gap-2 whitespace-nowrap
+    px-3 sm:px-4 py-2 rounded-full
+    border border-yellow-400 text-yellow-300
+    hover:bg-yellow-400 hover:text-neutral-900 transition text-sm sm:text-base;
 }
 
 .loginButton {
-    /* Base clair */
-    @apply px-3 sm:px-4 py-2 rounded-full border
-    border-neutral-300 text-neutral-900 hover:bg-neutral-100
-    transition text-sm sm:text-base;
-}
-/* Dark */
-:global(.dark) .loginButton {
-    @apply border-neutral-600 text-white hover:bg-neutral-800;
+    @apply inline-flex items-center gap-2 whitespace-nowrap
+    px-3 sm:px-4 py-2 rounded-full
+    border border-white/30 text-white
+    hover:bg-white/10 transition text-sm sm:text-base;
 }

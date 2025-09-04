@@ -1,64 +1,48 @@
-.page { @apply flex flex-col items-center justify-center py-8 sm:py-12 lg:py-20 px-4 sm:px-6; }
+.page {
+    @apply flex flex-col items-center justify-center py-8 sm:py-12 lg:py-20 px-4 sm:px-6;
+}
 
 .heroTitle {
-    @apply text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold
-    text-yellow-600 mb-4 text-center leading-snug;
+    @apply text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-400 mb-4 text-center leading-snug;
+    filter: drop-shadow(0 3px 10px rgba(0,0,0,.85));
 }
-:global(.dark) .heroTitle { @apply text-yellow-400; }
-
 .heroSubtitle {
-    @apply text-sm sm:text-base md:text-lg
-    text-neutral-700 mb-8 sm:mb-10 text-center
-    max-w-lg md:max-w-xl lg:max-w-2xl;
+    @apply text-sm sm:text-base md:text-lg mb-8 sm:mb-10 text-center max-w-lg md:max-w-xl lg:max-w-2xl;
+    @apply text-white/90;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,.75));
 }
-:global(.dark) .heroSubtitle { @apply text-gray-300; }
 
+/* Blocs */
 .block { @apply w-full max-w-md sm:max-w-xl mb-6 space-y-2; }
-
-.label { @apply block text-sm sm:text-base font-medium text-neutral-700; }
-:global(.dark) .label { @apply text-gray-400; }
-
-.linkHelp { @apply ml-2 text-blue-600 hover:underline text-xs sm:text-sm; }
-:global(.dark) .linkHelp { @apply text-blue-400; }
-
-.inputRow { @apply flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0; }
-
-.input {
-    /* Base clair */
-    @apply flex-grow px-3 py-2 rounded-md bg-white border border-neutral-300 text-neutral-900
-    focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm sm:text-base;
-}
-/* Dark */
-:global(.dark) .input { @apply bg-neutral-800 border-neutral-700 text-white; }
-
-.validateButton {
-    @apply px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600 text-sm sm:text-base;
-}
-:global(.dark) .validateButton { @apply bg-yellow-400 hover:bg-yellow-500; }
-
 .profileBlock { @apply w-full max-w-md sm:max-w-xl mb-10 space-y-2; }
 
-.reservedTag {
-    @apply ml-2 text-[10px] sm:text-xs px-2 py-1 rounded bg-red-100 text-red-700;
-}
-:global(.dark) .reservedTag { @apply bg-red-800 text-red-200; }
+.label { @apply block text-sm sm:text-base font-medium text-white/90; }
+.linkHelp { @apply ml-2 text-blue-200 hover:underline text-xs sm:text-sm; }
 
+/* Ligne d’inputs */
+.inputRow { @apply flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0; }
+
+/* Champs */
+.input {
+    @apply flex-grow px-3 py-2 rounded-md bg-neutral-900/70 text-white
+    border border-neutral-700 backdrop-blur-sm
+    focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm sm:text-base;
+}
+.inputDisabled {
+    @apply bg-neutral-800/60 border-neutral-700/60 text-neutral-400
+    placeholder-neutral-500 cursor-not-allowed opacity-70;
+}
+
+/* Boutons */
+.validateButton { @apply px-4 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 text-sm sm:text-base; }
 .disabledButton {
-    @apply px-4 py-2 rounded cursor-not-allowed text-sm sm:text-base
-    bg-neutral-200 text-neutral-500;
+    @apply px-4 py-2 rounded text-sm sm:text-base cursor-not-allowed
+    bg-neutral-700 text-gray-400 border border-neutral-600;
 }
-:global(.dark) .disabledButton { @apply bg-neutral-700 text-gray-400; }
 
-.resultBox {
-    @apply w-full max-w-md sm:max-w-xl rounded-md p-4
-    bg-neutral-50 border border-neutral-200;
-}
-:global(.dark) .resultBox { @apply bg-neutral-900 border-neutral-800; }
+/* Badges */
+.reservedTag { @apply ml-2 text-[10px] sm:text-xs bg-red-800 text-red-200 px-2 py-1 rounded; }
 
+.resultBox { @apply w-full max-w-md sm:max-w-xl bg-neutral-900/70 text-white border border-neutral-800 rounded-md p-4 backdrop-blur-sm; }
 .resultTitle { @apply text-base sm:text-lg font-semibold mb-2; }
-
-.resultText { @apply text-neutral-700; }
-:global(.dark) .resultText { @apply text-gray-400; }
-
-.errorText { @apply text-red-600 mt-2; }
-:global(.dark) .errorText { @apply text-red-500; }
+.resultText { @apply text-white/80 text-sm sm:text-base; }

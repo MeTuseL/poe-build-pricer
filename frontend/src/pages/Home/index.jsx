@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/Home.module.css";
 import { pricePoB } from "../../__services__/api-service.js";
-import { useI18n } from "../../__core__/i18n/I18nProvider.jsx";
+import { useI18n } from "../../__core__";
+import ErrorMsg from "../../components/ErrorMsg";
 
-export function Home() {
+export default function Home() {
     const { t } = useI18n();
     const [pobLink, setPobLink] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null); // erreurs du bloc PoB
     const navigate = useNavigate();
+
+    // TODO: remplacera plus tard par ton vrai état d'auth
+    const isAuthenticated = false;
 
     const handleValidatePoB = async () => {
         if (!pobLink.trim()) {
@@ -41,6 +45,7 @@ export function Home() {
                         {t("home.pobHelp")}
                     </a>
                 </label>
+
                 <div className={styles.inputRow}>
                     <input
                         type="text"
@@ -48,38 +53,50 @@ export function Home() {
                         value={pobLink}
                         onChange={(e) => setPobLink(e.target.value)}
                         className={styles.input}
+                        disabled={loading}
+                        aria-disabled={loading}
                     />
                     <button
                         onClick={handleValidatePoB}
                         className={styles.validateButton}
                         disabled={loading}
+                        type="button"
                     >
                         {loading ? t("home.loading") : t("home.validate")}
                     </button>
                 </div>
+
+                {error && <ErrorMsg message={error} />}
             </div>
 
-            {/* Bloc Profil */}
+            {/* Bloc Import profil — désactivé si non connecté */}
             <div className={styles.profileBlock}>
                 <label className={styles.label}>
                     {t("home.import")}
-                    <span className={styles.reservedTag}>{t("home.reserved")}</span>
                 </label>
 
                 <div className={styles.inputRow}>
                     <input
                         type="text"
                         placeholder={t("home.inputPlaceholder")}
-                        className={styles.input}
+                        className={`${styles.input} ${!isAuthenticated ? styles.inputDisabled : ""}`}
+                        disabled={!isAuthenticated}
+                        aria-disabled={!isAuthenticated}
+                        title={!isAuthenticated ? t("home.reserved") : undefined}
                     />
-                    <button className={styles.validateButton}>
+                    <button
+                        className={`${!isAuthenticated ? styles.disabledButton : styles.validateButton}`}
+                        disabled={!isAuthenticated}
+                        aria-disabled={!isAuthenticated}
+                        title={!isAuthenticated ? t("home.reserved") : undefined}
+                        type="button"
+                    >
                         {t("home.validate")}
                     </button>
                 </div>
 
-                {error && <p className={styles.errorText}>{error}</p>}
+                {!isAuthenticated && <ErrorMsg message={t("home.reserved")} />}
             </div>
         </div>
     );
 }
-export default Home;

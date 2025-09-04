@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import NavBar from "../NavBar";
 import Footer from "../Footer";
-import SettingsModal from "../SettingsModal"; // ⬅️ ouvert par le bouton "Paramètres"
+import SettingsModal from "../SettingsModal";
 
 import styles from "./styles/Layout.module.css";
 
 export function Layout() {
     const [openSettings, setOpenSettings] = useState(false);
+    const location = useLocation();
+
+    const isPricing =
+        location.pathname.endsWith("/pricing") ||
+        location.pathname.includes("/pricing");
+
+    const containerClass = `${styles.container} ${isPricing ? styles.containerWide : ""}`;
 
     return (
         <div className={styles.layout}>
@@ -17,7 +24,7 @@ export function Layout() {
                 onLoginClick={() => console.log("Connexion")}
             />
 
-            <div className={styles.container}>
+            <div className={containerClass}>
                 <main className={styles.main}>
                     <Outlet />
                 </main>
