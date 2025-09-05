@@ -1,0 +1,16 @@
+.warnWrap { @apply relative inline-block; }
+
+.warnIcon {
+    @apply w-4 h-4 text-red-500 ml-1 cursor-help;
+}
+
+.warnBubble {
+    @apply absolute z-[5000] w-64 left-1/2 -translate-x-1/2 mt-2 rounded-lg border p-3 shadow-xl;
+    @apply bg-neutral-900 border-red-600 text-neutral-200;
+    user-select: text;
+}
+:global(.dark) .warnBubble { @apply bg-neutral-900; }
+
+.warnTitle { @apply font-semibold text-red-400 mb-1; }
+.warnText  { @apply text-sm text-neutral-300 mb-2; }
+.warnLink  { @apply inline-block text-red-400 hover:text-red-300 underline; }

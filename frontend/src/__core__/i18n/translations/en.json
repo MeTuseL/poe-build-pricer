@@ -1,0 +1,101 @@
+{
+  "navbar": {
+    "settings": "Settings",
+    "login": "Sign in"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "themeDesc": "Choose the site appearance.",
+    "system": "System",
+    "dark": "Dark",
+    "light": "Light",
+    "textSize": "Text size",
+    "textSizeDesc": "Reading comfort.",
+    "small": "Small",
+    "normal": "Normal",
+    "large": "Large",
+    "anim": "UI animations",
+    "animDesc": "Micro-interactions.",
+    "lang": "Language",
+    "langDesc": "Interface",
+    "french": "French",
+    "english": "English",
+    "close": "Close",
+    "signinToSave": "Sign in to save your preferences."
+  },
+  "home": {
+    "title": "PoE Pricer Tools",
+    "subtitle": "Estimate the total cost of a Path of Exile build from a PoB link. Sign in to access settings and save builds.",
+    "pobLabel": "PoB code",
+    "pobHelp": "How to get a PoB link?",
+    "inputPlaceholder": "https://pastebin.com/...",
+    "validate": "Validate",
+    "loading": "Loading…",
+    "import": "Import profile",
+    "reserved": "Reserved for signed-in users",
+    "errorInvalidLink": "Please enter a valid PoB link.",
+    "errorLoading": "Couldn't load data. Please check the link."
+  },
+  "pricing": {
+    "title": "Build results",
+    "header": "Build results — {{class}} ({{ascend}})",
+    "sections": {
+      "equipment": "Equipment list",
+      "armour": "Equipment list",
+      "jewels": "Jewel list",
+      "gems": "Gem list",
+      "flasks": "Flask list"
+    },
+    "total": "Total",
+    "breakdown": {
+      "equipment": "Equipment",
+      "armour": "Equipment",
+      "jewels": "Jewels",
+      "gems": "Gems",
+      "flasks": "Flasks"
+    },
+    "save": "Save build",
+    "noData": "No data received. Return to home.",
+    "back": "← Back to home",
+    "priceAria": "Price (Divine)",
+    "warn": {
+      "title": "Price unavailable",
+      "message": "We couldn’t retrieve a price for this item. You can search it on PoE Trade:",
+      "link": "Open PoE Trade ↗"
+    }
+  },
+  "status": {
+    "title": "Oops, something went wrong",
+    "subtitle": "The page you’re looking for can’t be found or an internal error occurred.",
+    "details": "Technical detail",
+    "backHome": "← Back to home",
+    "notFoundMessage": "Page not found"
+  },
+  "errorPage": {
+    "title": "Oops, something went wrong",
+    "subtitle": "The page you’re looking for can’t be found or an internal error occurred.",
+    "details": "Technical detail",
+    "backHome": "← Back to home"
+  },
+  "tooltip": {
+    "implicit": "IMPLICIT",
+    "explicit": "EXPLICIT",
+    "level": "Level",
+    "quality": "Quality",
+    "corrupted": "Corrupted"
+  },
+  "common": {
+    "loading": "Loading…",
+    "back": "Back",
+    "save": "Save",
+    "na": "N/A"
+  },
+  "labels": {
+    "class": "Class",
+    "ascendancy": "Ascendancy",
+    "currency": {
+      "divine": "Divine"
+    }
+  }
+}

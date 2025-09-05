@@ -1,0 +1,102 @@
+{
+  "navbar": {
+    "settings": "Paramètres",
+    "login": "Connexion"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "theme": "Thème",
+    "themeDesc": "Choisis l’apparence du site.",
+    "system": "Système",
+    "dark": "Sombre",
+    "light": "Clair",
+    "textSize": "Taille du texte",
+    "textSizeDesc": "Confort de lecture.",
+    "small": "Petit",
+    "normal": "Normal",
+    "large": "Grand",
+    "anim": "Animations UI",
+    "animDesc": "Micro-interactions.",
+    "lang": "Langue",
+    "langDesc": "Interface",
+    "french": "Français",
+    "english": "English",
+    "close": "Fermer",
+    "signinToSave": "Connecte-toi pour sauvegarder tes préférences."
+
+  },
+  "home": {
+    "title": "PoE Pricer Tools",
+    "subtitle": "Estime le coût total d’un build Path of Exile à partir d’un lien PoB. Connecte-toi pour accéder aux paramètres et sauvegarder des builds.",
+    "pobLabel": "Code PoB",
+    "pobHelp": "Comment obtenir un lien PoB ?",
+    "inputPlaceholder": "https://pastebin.com/...",
+    "validate": "Valider",
+    "loading": "Chargement...",
+    "import": "Import Profil",
+    "reserved": "Réservé aux utilisateurs connectés",
+    "errorInvalidLink": "Veuillez entrer un lien PoB valide.",
+    "errorLoading": "Impossible de charger les données. Vérifiez le lien."
+  },
+  "pricing": {
+    "title": "Résultats du build",
+    "header": "Résultats du build — {{class}} ({{ascend}})",
+    "sections": {
+      "equipment": "Liste équipements",
+      "armour": "Liste équipements",
+      "jewels": "Liste joyaux",
+      "gems": "Liste gemmes",
+      "flasks": "Liste flacons"
+    },
+    "total": "Total",
+    "breakdown": {
+      "equipment": "Équipements",
+      "armour": "Équipements",
+      "jewels": "Joyaux",
+      "gems": "Gemmes",
+      "flasks": "Flacons"
+    },
+    "save": "Sauvegarder le build",
+    "noData": "Aucune donnée reçue. Retournez à l'accueil.",
+    "back": "← Retour à l'accueil",
+    "priceAria": "Prix (Divine)",
+    "warn": {
+      "title": "Prix indisponible",
+      "message": "Nous n’avons pas pu récupérer le prix de cet objet. Vous pouvez le rechercher sur PoE Trade :",
+      "link": "Ouvrir PoE Trade ↗"
+    }
+  },
+  "status": {
+    "title": "Oups, une erreur est survenue",
+    "subtitle": "La page que vous cherchez est introuvable ou une erreur interne s’est produite.",
+    "details": "Détail technique",
+    "backHome": "← Retour à l’accueil",
+    "notFoundMessage": "Page introuvable"
+  },
+  "errorPage": {
+    "title": "Oups, une erreur est survenue",
+    "subtitle": "La page que vous cherchez est introuvable ou une erreur interne s’est produite.",
+    "details": "Détail technique",
+    "backHome": "← Retour à l’accueil"
+  },
+  "tooltip": {
+    "implicit": "IMPLICIT",
+    "explicit": "EXPLICIT",
+    "level": "Niveau",
+    "quality": "Qualité",
+    "corrupted": "Corrompu"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "back": "Retour",
+    "save": "Sauvegarder",
+    "na": "N/A"
+  },
+  "labels": {
+    "class": "Classe",
+    "ascendancy": "Ascendance",
+    "currency": {
+      "divine": "Divine"
+    }
+  }
+}

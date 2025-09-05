@@ -1,0 +1,33 @@
+.overlay { @apply fixed inset-0 bg-black/60 grid place-items-center z-50; }
+
+/* Base = clair */
+.modal {
+    @apply w-[92vw] max-w-[820px]
+    bg-white border border-neutral-200
+    rounded-2xl shadow-2xl;
+}
+/* Surcharge en dark (CSS Modules compatible) */
+:global(.dark) .modal {
+    @apply bg-neutral-900 border-neutral-800;
+}
+
+.header {
+    @apply flex items-center justify-between px-4 sm:px-5 py-3
+    border-b border-neutral-200;
+}
+:global(.dark) .header {
+    @apply border-neutral-800;
+}
+
+.title { @apply text-lg sm:text-xl font-semibold text-neutral-900; }
+:global(.dark) .title { @apply text-white; }
+
+.close {
+    @apply text-neutral-500 hover:text-neutral-800
+    text-2xl leading-none px-2 py-1;
+}
+:global(.dark) .close {
+    @apply text-neutral-400 hover:text-white;
+}
+
+.content { @apply p-4 sm:p-5; }
